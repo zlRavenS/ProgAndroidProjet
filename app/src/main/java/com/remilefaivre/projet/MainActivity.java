@@ -23,12 +23,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void onClickInscrire(View view) {
+    public void onClickRegister(View view) {
         Intent i = new Intent(MainActivity.this, RegisterActivity.class);
         startActivity(i);
     }
 
-    public void logging(View view) {
+    public void onClickLogging(View view) {
         final EditText champEmail = (EditText) findViewById(R.id.txt_mail);
         String email = champEmail.getText().toString();
         final EditText champMdp = (EditText) findViewById(R.id.txt_password);
