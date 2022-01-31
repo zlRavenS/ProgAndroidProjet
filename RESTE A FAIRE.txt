@@ -1,0 +1,22 @@
+Envoyer Projet en fichier .zip SQR-TP2-DESCHAMPS-Antonin-LEFAIVRE-Remi
+
+
+- Lister les pièces
+- Créer une pièce
+- Supprimer un pièce
+
+- Lister les types de capteurs
+- Lister les capteurs
+- Ajouter un capteur
+- Supprimer un capteur
+- Lire la valeur d'un capteur
+
+- Lister les périphériques
+- Lister les types de périphériques
+- Ajouter un périphérique
+- Supprimer un périphérique
+- Allumer un périphérique
+- Eteindre un périphérique
+
+- Lister images disponibles
+

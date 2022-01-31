@@ -3,8 +3,11 @@ package com.remilefaivre.projet;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
@@ -22,53 +25,55 @@ public class RoomsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rooms);
-        loadRooms();
-        loadRoomPicture();
+
+        Intent i = new Intent();
+        String userToken = i.getStringExtra("tokenID");
+
+        loadRooms(userToken);
+        loadRoomPicture(userToken);
     }
 
-    public void loadRooms() {
+    public void loadRooms(String tokenId) {
         //Pour conserver le contexte de l'activité
         Context that = this;
 
+        ListView listRooms = findViewById(R.id.liste_rooms);
+
+
         AndroidNetworking.get("https://myhouse.lesmoulinsdudev.com/rooms")
-            .build()
-            .getAsJSONObject(new JSONObjectRequestListener() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    try {
-                        //Récupération du tableau de flavour
-                        JSONArray rooms = response.getJSONArray("rooms");
+                .addHeaders("Authorization","Bearer " + tokenId)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            //Récupération du tableau de commandes
+                            JSONArray orders = response.getJSONArray("orders");
 
-                        //Liste dans laquelle seront stockés les "parfums" de pizzas
-                        ArrayList<Room> roomList = new ArrayList<>();
+                            //Création d'un adaptateur permettant d'afficher les commandes dans un listView
+                            RoomAdapter adapter = new RoomAdapter(
+                                    that,
+                                    R.layout.room_item,
+                                    orders
+                            );
 
-                        //Pour chaque pizza
-                        for(int iRoom = 0; iRoom < rooms.length(); iRoom++) {
+                            //Mise en place de l'adaptateur dans le spinner
+                            listRooms.setAdapter(adapter);
 
-                            //On récupère les données de la pizza
-                            final JSONObject room = rooms.getJSONObject(iRoom);
-
-                            //On ajoute les données à la liste des parfums
-                            roomList.add(new Room(
-                                    room.getString("name"),
-                                    room.getInt("idPicture")));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-
-                        // TODO Affichage dans le Layout
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
                     }
-                }
 
-                @Override
-                public void onError(ANError anError) {
-
-                }
-            });
+                    @Override
+                    public void onError(ANError anError) {
+                        Toast toastError = Toast.makeText(that,anError.getErrorBody(),Toast.LENGTH_SHORT);
+                        toastError.show();
+                    }
+                });
     }
 
-    public void loadRoomPicture() {
+    public void loadRoomPicture(String tokenId) {
         //Pour conserver le contexte de l'activité
         Context that = this;
 
