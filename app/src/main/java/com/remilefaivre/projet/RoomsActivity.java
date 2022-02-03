@@ -51,14 +51,10 @@ public class RoomsActivity extends AppCompatActivity {
                             JSONArray orders = response.getJSONArray("rooms");
 
                             //Création d'un adaptateur permettant d'afficher les commandes dans un listView
-                            RoomAdapter adapter = new RoomAdapter(
-                                    that,
-                                    R.layout.room_item,
-                                    orders
-                            );
+                            RoomAdapter adapter = new RoomAdapter(that,R.layout.room_item,orders);
 
                             //Mise en place de l'adaptateur dans le spinner
-                            listRooms.setAdapter((ListAdapter) adapter);
+                            listRooms.setAdapter(adapter);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
