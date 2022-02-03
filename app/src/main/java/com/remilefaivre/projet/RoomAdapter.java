@@ -66,8 +66,6 @@ public class RoomAdapter extends BaseAdapter implements ListAdapter {
         //getting the view
         View view = layoutInflater.inflate(obj, null, false);
 
-
-
         //getting the view elements of the list from the view
         TextView roomName = view.findViewById(R.id.texte_room);
         ImageView roomPicture = view.findViewById(R.id.image_room);
