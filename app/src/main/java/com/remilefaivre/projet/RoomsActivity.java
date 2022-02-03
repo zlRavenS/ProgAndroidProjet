@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -13,6 +12,7 @@ import android.widget.Toast;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.androidnetworking.interfaces.OkHttpResponseListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,7 +39,6 @@ public class RoomsActivity extends AppCompatActivity {
         Context that = this;
 
         ListView listRooms = findViewById(R.id.liste_rooms);
-
 
         AndroidNetworking.get("https://myhouse.lesmoulinsdudev.com/rooms")
                 .addHeaders("Authorization","Bearer " + tokenId)
