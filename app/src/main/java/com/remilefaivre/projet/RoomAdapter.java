@@ -4,7 +4,9 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,24 +15,27 @@ import androidx.annotation.Nullable;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-public class RoomAdapter {
+public class RoomAdapter extends BaseAdapter implements ListAdapter {
 
     //Contexte de l'activité
     Context context;
 
     //Objet du layout
     int obj;
+    int resource;
 
     JSONArray room;
 
-    String name;
     int idPicture;
+    String name;
+    int id;
 
     public RoomAdapter(@NonNull Context context, int obj, JSONArray room) {
         this.context=context;
         this.obj=obj;
         this.room=room;
     }
+
 
     @Override
     public int getCount() {
@@ -55,34 +60,24 @@ public class RoomAdapter {
     @NonNull
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-
-        //we need to get the view of the xml for our list item
-        //And for this we need a layoutinflater
         LayoutInflater layoutInflater = LayoutInflater.from(context);
 
-        //getting the view
         View view = layoutInflater.inflate(obj, null, false);
 
-
-
-        //getting the view elements of the list from the view
         TextView textRoom = view.findViewById(R.id.texte_room);
         ImageView imgRoom = view.findViewById(R.id.image_room);
 
-        //adding values to the list item
         try {
             name = room.getJSONObject(position).getString("name");
-            idPicture =  room.getJSONObject(position).getString("picture");
+            //idPicture =  room.getJSONObject(position).getString("picture");
+            id = room.getJSONObject(position).getInt("id");
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
 
-        orderFlavour.setText(flavour);
-        orderDough.setText(dough);
-        orderDate.setText(date);
+        textRoom.setText(name);
 
-        //finally returning the view
         return view;
     }
 

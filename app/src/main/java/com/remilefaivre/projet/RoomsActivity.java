@@ -24,16 +24,19 @@ public class RoomsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        AndroidNetworking.initialize(getApplicationContext());
+
         setContentView(R.layout.activity_rooms);
 
-        Intent i = new Intent();
-        String userToken = i.getStringExtra("tokenID");
-
+        Intent i = getIntent();
+        String userToken = i.getStringExtra("token");
+        //loadRoomPicture(userToken);
         loadRooms(userToken);
-        loadRoomPicture(userToken);
+
     }
 
-    public void loadRooms(String tokenId) {
+    public void loadRooms(String token) {
         //Pour conserver le contexte de l'activité
         Context that = this;
 
@@ -41,24 +44,16 @@ public class RoomsActivity extends AppCompatActivity {
 
 
         AndroidNetworking.get("https://myhouse.lesmoulinsdudev.com/rooms")
-                .addHeaders("Authorization","Bearer " + tokenId)
+                .addHeaders("Authorization","Bearer " + token)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            //Récupération du tableau de commandes
-                            JSONArray orders = response.getJSONArray("orders");
+                            JSONArray rooms = response.getJSONArray("rooms");
 
-                            //Création d'un adaptateur permettant d'afficher les commandes dans un listView
-                            RoomAdapter adapter = new RoomAdapter(
-                                    that,
-                                    R.layout.room_item,
-                                    orders
-                            );
-
-                            //Mise en place de l'adaptateur dans le spinner
-                            listRooms.setAdapter(adapter);
+                            RoomAdapter roomAdapter = new RoomAdapter(that,R.layout.room_item, rooms);
+                            listRooms.setAdapter(roomAdapter);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -69,11 +64,12 @@ public class RoomsActivity extends AppCompatActivity {
                     public void onError(ANError anError) {
                         Toast toastError = Toast.makeText(that,anError.getErrorBody(),Toast.LENGTH_SHORT);
                         toastError.show();
+                        anError.getErrorCode();
                     }
                 });
     }
 
-    public void loadRoomPicture(String tokenId) {
+    public void loadRoomPicture(String token) {
         //Pour conserver le contexte de l'activité
         Context that = this;
 
@@ -83,7 +79,6 @@ public class RoomsActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(JSONObject response) {
                     try {
-                        //Récupération du tableau de flavour
                         JSONArray pictures = response.getJSONArray("pictures");
 
                         //Liste dans laquelle seront stockés les "parfums" de pizzas
@@ -96,9 +91,9 @@ public class RoomsActivity extends AppCompatActivity {
                             final JSONObject picture = pictures.getJSONObject(iPicture);
 
                             //On ajoute les données à la liste des parfums
-                            pictureList.add(new Picture(
-                                    picture.getInt("id"),
-                                    picture.getString("url")));
+                            //pictureList.add(new Picture(
+                              //      picture.getInt("id"),
+                                //    picture.getString("url")));
                         }
 
                         // TODO Affichage dans le Layout
@@ -110,7 +105,8 @@ public class RoomsActivity extends AppCompatActivity {
 
                 @Override
                 public void onError(ANError anError) {
-
+                    Toast toastError = Toast.makeText(that,anError.getErrorBody(),Toast.LENGTH_SHORT);
+                    toastError.show();
                 }
             });
     }

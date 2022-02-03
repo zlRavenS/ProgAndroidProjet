@@ -43,18 +43,21 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         try {
                             String token = response.getString("token");
+
+                            Intent i = new Intent(MainActivity.this, RoomsActivity.class);
+                            i.putExtra("token", token);
+                            startActivity(i);
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
-                        Intent i = new Intent(MainActivity.this, RoomsActivity.class);
-                        startActivity(i);
                     }
 
                     @Override
                     public void onError(ANError anError) {
                         Toast toast = Toast.makeText(MainActivity.this, "Erreur", Toast.LENGTH_SHORT);
                         toast.show();
+                        anError.getErrorCode();
                     }
                 });
 
