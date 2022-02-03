@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.INotificationSideChannel;
+import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -12,12 +15,15 @@ import android.widget.Toast;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.androidnetworking.interfaces.OkHttpResponseListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+
+import okhttp3.Response;
 
 public class RoomsActivity extends AppCompatActivity {
 
@@ -29,10 +35,63 @@ public class RoomsActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_rooms);
 
-        Intent i = getIntent();
-        String userToken = i.getStringExtra("token");
+        Intent tokenI = getIntent();
+        String token = tokenI.getStringExtra("token");
         //loadRoomPicture(userToken);
-        loadRooms(userToken);
+        loadRooms(token);
+        //picture?type=
+
+    }
+    public void onClickItem(View view) {
+        int id = (int) view.getTag();
+
+        Intent tokenI = getIntent();
+        String token = tokenI.getStringExtra("token");
+
+        Intent i = new Intent(RoomsActivity.this, InfoActivity.class);
+        i.putExtra("token", token);
+        i.putExtra("id", id);
+        startActivity(i);
+    }
+    public void onClickAjouter(View view) {
+        Intent tokenI = getIntent();
+        String token = tokenI.getStringExtra("token");
+
+        Intent i = new Intent(RoomsActivity.this, AddRoomActivity.class);
+        i.putExtra("token", token);
+        startActivity(i);
+    }
+    public void onClickSupprimer(View view) {
+        Intent tokenI = getIntent();
+        String token = tokenI.getStringExtra("token");
+        int id = (int) view.getTag();
+        AndroidNetworking.post("https://myhouse.lesmoulinsdudev.com/room-delete")
+                .addHeaders("Authorization", "Bearer "+token)
+                .addBodyParameter("idRoom",""+id)
+                .build()
+                .getAsOkHttpResponse(new OkHttpResponseListener() {
+                    @Override
+                    public void onResponse(Response response) {
+                        switch (response.code()) {
+                            case 200:
+                                Intent i = new Intent(RoomsActivity.this, RoomsActivity.class);
+                                i.putExtra("token", token);
+                                startActivity(i);
+                                break;
+                            default:
+                                Toast toastError = Toast.makeText(RoomsActivity.this, "Erreur " + response.code(), Toast.LENGTH_SHORT);
+                                toastError.show();
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        Toast toastError = Toast.makeText(RoomsActivity.this, "Erreur", Toast.LENGTH_SHORT);
+                        toastError.show();
+                    }
+                });
+
 
     }
 

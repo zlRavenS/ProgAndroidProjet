@@ -5,12 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -66,6 +68,8 @@ public class RoomAdapter extends BaseAdapter implements ListAdapter {
 
         TextView textRoom = view.findViewById(R.id.texte_room);
         ImageView imgRoom = view.findViewById(R.id.image_room);
+        Button deleteRoom = view.findViewById(R.id.delete_room);
+        ConstraintLayout myView = view.findViewById(R.id.my_view);
 
         try {
             name = room.getJSONObject(position).getString("name");
@@ -77,7 +81,8 @@ public class RoomAdapter extends BaseAdapter implements ListAdapter {
 
 
         textRoom.setText(name);
-
+        deleteRoom.setTag(id);
+        myView.setTag(id);
         return view;
     }
 

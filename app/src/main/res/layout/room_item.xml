@@ -2,8 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_view"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:onClick="onClickItem">
 
     <ImageView
         android:id="@+id/image_room"
@@ -19,11 +21,25 @@
         android:id="@+id/texte_room"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="40dp"
         android:text="TextView"
         android:textColor="#000000"
+        android:textSize="20sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/delete_room"
+        app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toEndOf="@+id/image_room"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/delete_room"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="40dp"
+        android:onClick="onClickSupprimer"
+        android:text="Delete"
+        app:backgroundTint="#D80C0C"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

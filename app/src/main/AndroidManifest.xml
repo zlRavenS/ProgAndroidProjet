@@ -13,13 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProgAndroidProjet">
         <activity
+            android:name=".InfoActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddRoomActivity"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"
-            android:exported="false" />
-        <activity
-            android:name=".CapteursActivity"
             android:exported="false" />
         <activity
             android:name=".RoomsActivity"
