@@ -32,7 +32,6 @@ public class RoomAdapter {
         this.room=room;
     }
 
-    @Override
     public int getCount() {
         if(null==room)
             return 0;
@@ -40,20 +39,17 @@ public class RoomAdapter {
             return room.length();
     }
 
-    @Override
     public Object getItem(int i) {
         if(null==room) return null;
         else
             return room.optJSONObject(i);
     }
 
-    @Override
     public long getItemId(int i) {
         return 0;
     }
 
-    @NonNull
-    @Override
+
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         //we need to get the view of the xml for our list item
@@ -72,15 +68,14 @@ public class RoomAdapter {
         //adding values to the list item
         try {
             name = room.getJSONObject(position).getString("name");
-            idPicture =  room.getJSONObject(position).getString("picture");
+            idPicture =  room.getJSONObject(position).getInt("picture");
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
 
-        orderFlavour.setText(flavour);
-        orderDough.setText(dough);
-        orderDate.setText(date);
+        textRoom.setText(name);
+        imgRoom.setId(idPicture);
 
         //finally returning the view
         return view;
