@@ -43,12 +43,12 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         try {
                             String token = response.getString("token");
+                            Intent i = new Intent(MainActivity.this, RoomsActivity.class);
+                            i.putExtra("tokenID", token);
+                            startActivity(i);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
-                        Intent i = new Intent(MainActivity.this, RoomsActivity.class);
-                        startActivity(i);
                     }
 
                     @Override

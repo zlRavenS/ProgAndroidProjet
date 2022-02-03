@@ -27,11 +27,11 @@ public class RoomsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rooms);
 
-        Intent i = new Intent();
+        Intent i = getIntent();
         String userToken = i.getStringExtra("tokenID");
 
         loadRooms(userToken);
-        loadRoomPicture(userToken);
+        //loadRoomPicture(userToken);
     }
 
     public void loadRooms(String tokenId) {
@@ -48,7 +48,7 @@ public class RoomsActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         try {
                             //Récupération du tableau de commandes
-                            JSONArray orders = response.getJSONArray("orders");
+                            JSONArray orders = response.getJSONArray("rooms");
 
                             //Création d'un adaptateur permettant d'afficher les commandes dans un listView
                             RoomAdapter adapter = new RoomAdapter(
@@ -73,7 +73,7 @@ public class RoomsActivity extends AppCompatActivity {
                 });
     }
 
-    public void loadRoomPicture(String tokenId) {
+    /*public void loadRoomPicture(String tokenId) {
         //Pour conserver le contexte de l'activité
         Context that = this;
 
@@ -113,5 +113,5 @@ public class RoomsActivity extends AppCompatActivity {
 
                 }
             });
-    }
+    }*/
 }
