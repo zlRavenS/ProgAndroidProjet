@@ -8,84 +8,74 @@
 
     <TextView
         android:id="@+id/textView_Room"
-        android:layout_width="wrap_content"
+        android:layout_width="409dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="16dp"
         android:text="Room"
+        android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <ListView
+        android:id="@+id/liste_capteurs"
         android:layout_width="205dp"
-        android:layout_height="50dp"
+        android:layout_height="595dp"
+        android:layout_marginTop="1dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_Room">
+        app:layout_constraintTop_toBottomOf="@+id/button_addSensor" />
 
-        <TextView
-            android:id="@+id/textView_Capteurs"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Capteurs"
-            android:textSize="24sp" />
-
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <Button
-            android:id="@+id/button_addSensor"
-            android:layout_width="48dp"
-            android:layout_height="wrap_content"
-            android:text="+" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="205dp"
-        android:layout_height="50dp"
-        app:layout_constraintStart_toEndOf="@+id/linearLayout"
-        app:layout_constraintTop_toBottomOf="@+id/textView_Room">
-
-        <TextView
-            android:id="@+id/textView_Peripheriques"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Périphériques"
-            android:textSize="24sp" />
-
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <Button
-            android:id="@+id/button_addDevice"
-            android:layout_width="48dp"
-            android:layout_height="wrap_content"
-            android:text="+" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="205dp"
-        android:layout_height="594dp"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"></LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout4"
-        android:layout_width="205dp"
-        android:layout_height="594dp"
-        android:orientation="horizontal"
+    <ListView
+        android:layout_width="204dp"
+        android:layout_height="596dp"
+        android:layout_marginTop="1dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/linearLayout3"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"></LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/button_addDevice" />
+
+    <TextView
+        android:id="@+id/textView_Capteurs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="Capteurs"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/button_addSensor"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_Room" />
+
+    <Button
+        android:id="@+id/button_addSensor"
+        android:layout_width="48dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="25dp"
+        android:text="+"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_Room" />
+
+    <TextView
+        android:id="@+id/textView_Peripheriques"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="Périphériques"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button_addDevice"
+        app:layout_constraintTop_toBottomOf="@+id/textView_Room" />
+
+    <Button
+        android:id="@+id/button_addDevice"
+        android:layout_width="48dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="25dp"
+        android:text="+"
+        app:layout_constraintStart_toEndOf="@+id/button_addSensor"
+        app:layout_constraintTop_toBottomOf="@+id/textView_Room" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

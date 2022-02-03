@@ -18,7 +18,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-public class RoomAdapter extends BaseAdapter implements ListAdapter {
+public class CapteurAdapter extends BaseAdapter implements ListAdapter {
 
     //Contexte de l'activité
     Context context;
@@ -27,32 +27,33 @@ public class RoomAdapter extends BaseAdapter implements ListAdapter {
     int obj;
     int resource;
 
-    JSONArray room;
+    JSONArray capteurs;
 
     String urlPicture;
     String name;
+    String type;
     int id;
 
-    public RoomAdapter(@NonNull Context context, int obj, JSONArray room) {
+    public CapteurAdapter(@NonNull Context context, int obj, JSONArray capteurs) {
         this.context=context;
         this.obj=obj;
-        this.room=room;
+        this.capteurs=capteurs;
     }
 
 
     @Override
     public int getCount() {
-        if(null==room)
+        if(null==capteurs)
             return 0;
         else
-            return room.length();
+            return capteurs.length();
     }
 
     @Override
     public Object getItem(int i) {
-        if(null==room) return null;
+        if(null==capteurs) return null;
         else
-            return room.optJSONObject(i);
+            return capteurs.optJSONObject(i);
     }
 
     @Override
@@ -67,23 +68,23 @@ public class RoomAdapter extends BaseAdapter implements ListAdapter {
 
         View view = layoutInflater.inflate(obj, null, false);
 
-        TextView textRoom = view.findViewById(R.id.texte_room);
-        ImageView imgRoom = view.findViewById(R.id.image_room);
-        Button deleteRoom = view.findViewById(R.id.delete_room);
-        ConstraintLayout myView = view.findViewById(R.id.my_view);
+        TextView nameField = view.findViewById(R.id.texte_capteur);
+        TextView typeField = view.findViewById(R.id.type_capteur);
+        ImageView imgCapteur = view.findViewById(R.id.image_capteur);
+
 
         try {
-            name = room.getJSONObject(position).getString("name");
-            urlPicture =  room.getJSONObject(position).getString("picture");
-            id = room.getJSONObject(position).getInt("id");
+            name = capteurs.getJSONObject(position).getString("name");
+            urlPicture =  capteurs.getJSONObject(position).getString("picture");
+            type = capteurs.getJSONObject(position).getString("type");
+            id = capteurs.getJSONObject(position).getInt("id");
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        imgRoom.setImageURI(Uri.parse("https://myhouse.lesmoulinsdudev.com/" + urlPicture));
-        textRoom.setText(name);
-        deleteRoom.setTag(id);
-        myView.setTag(id);
+        imgCapteur.setImageURI(Uri.parse(urlPicture));
+        nameField.setText(name);
+        typeField.setText(type);
         return view;
     }
 

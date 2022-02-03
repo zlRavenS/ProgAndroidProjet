@@ -27,7 +27,7 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/delete_room"
-        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintHorizontal_bias="0.336"
         app:layout_constraintStart_toEndOf="@+id/image_room"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,4 +42,5 @@
         app:backgroundTint="#D80C0C"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

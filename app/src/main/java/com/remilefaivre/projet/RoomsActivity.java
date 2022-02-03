@@ -37,7 +37,7 @@ public class RoomsActivity extends AppCompatActivity {
 
         Intent tokenI = getIntent();
         String token = tokenI.getStringExtra("token");
-        //loadRoomPicture(userToken);
+        loadRoomPicture(token);
         loadRooms(token);
         //picture?type=
 
@@ -50,7 +50,7 @@ public class RoomsActivity extends AppCompatActivity {
 
         Intent i = new Intent(RoomsActivity.this, InfoActivity.class);
         i.putExtra("token", token);
-        i.putExtra("id", id);
+        i.putExtra("id", ""+id);
         startActivity(i);
     }
     public void onClickAjouter(View view) {
@@ -132,41 +132,35 @@ public class RoomsActivity extends AppCompatActivity {
         //Pour conserver le contexte de l'activité
         Context that = this;
 
-        AndroidNetworking.get("https://myhouse.lesmoulinsdudev.com/pictures")
-            .build()
-            .getAsJSONObject(new JSONObjectRequestListener() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    try {
-                        JSONArray pictures = response.getJSONArray("pictures");
+        AndroidNetworking.get("https://myhouse.lesmoulinsdudev.com/pictures?type=room")
+                .addHeaders("Authorization","Bearer " + token)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            JSONArray pictures = response.getJSONArray("pictures");
 
-                        //Liste dans laquelle seront stockés les "parfums" de pizzas
-                        ArrayList<Picture> pictureList = new ArrayList<>();
+                            ArrayList<Picture> pictureList = new ArrayList<>();
 
-                        //Pour chaque pizza
-                        for(int iPicture = 0; iPicture < pictures.length(); iPicture++) {
+                            for (int iPicture = 0; iPicture < pictures.length(); iPicture++) {
 
-                            //On récupère les données de la pizza
-                            final JSONObject picture = pictures.getJSONObject(iPicture);
+                                final JSONObject picture = pictures.getJSONObject(iPicture);
 
-                            //On ajoute les données à la liste des parfums
-                            //pictureList.add(new Picture(
-                              //      picture.getInt("id"),
-                                //    picture.getString("url")));
+                                //pictureList.add(new Picture(
+                                 //       picture.getInt("id"),
+                                  //      picture.getString("url")));
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-
-                        // TODO Affichage dans le Layout
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
                     }
-                }
 
-                @Override
-                public void onError(ANError anError) {
-                    Toast toastError = Toast.makeText(that,anError.getErrorBody(),Toast.LENGTH_SHORT);
-                    toastError.show();
-                }
-            });
+                    @Override
+                    public void onError(ANError anError) {
+                        Toast toastError = Toast.makeText(that,anError.getErrorBody(),Toast.LENGTH_SHORT);
+                        toastError.show();
+                    }
+                });
     }
 }
