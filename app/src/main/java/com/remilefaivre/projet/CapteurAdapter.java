@@ -10,13 +10,19 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
+
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 public class CapteurAdapter extends BaseAdapter implements ListAdapter {
 
@@ -26,7 +32,6 @@ public class CapteurAdapter extends BaseAdapter implements ListAdapter {
     //Objet du layout
     int obj;
     int resource;
-
     JSONArray capteurs;
 
     String urlPicture;
@@ -70,8 +75,8 @@ public class CapteurAdapter extends BaseAdapter implements ListAdapter {
 
         TextView nameField = view.findViewById(R.id.texte_capteur);
         TextView typeField = view.findViewById(R.id.type_capteur);
-        ImageView imgCapteur = view.findViewById(R.id.image_capteur);
-
+        ImageView imgSensor = view.findViewById(R.id.image_capteur);
+        Button deleteSensor = view.findViewById(R.id.button_deleteSensor);
 
         try {
             name = capteurs.getJSONObject(position).getString("name");
@@ -82,10 +87,12 @@ public class CapteurAdapter extends BaseAdapter implements ListAdapter {
             e.printStackTrace();
         }
 
-        imgCapteur.setImageURI(Uri.parse(urlPicture));
+        imgSensor.setImageURI(Uri.parse(urlPicture));
         nameField.setText(name);
         typeField.setText(type);
+        deleteSensor.setTag(id);
         return view;
     }
-
 }
+
+

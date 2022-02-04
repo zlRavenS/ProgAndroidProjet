@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
@@ -30,7 +29,7 @@ public class AddRoomActivity extends AppCompatActivity {
         Intent tokenI = getIntent();
         String token = tokenI.getStringExtra("token");
 
-        EditText newNameField = (EditText) findViewById(R.id.new_name);
+        EditText newNameField = (EditText) findViewById(R.id.new_name_capteur);
         String newName = String.valueOf(newNameField.getText());
 
         AndroidNetworking.post("https://myhouse.lesmoulinsdudev.com/room-create")

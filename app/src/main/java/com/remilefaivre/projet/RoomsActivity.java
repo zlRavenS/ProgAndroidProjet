@@ -43,14 +43,14 @@ public class RoomsActivity extends AppCompatActivity {
 
     }
     public void onClickItem(View view) {
-        int id = (int) view.getTag();
+        int idRoom = (int) view.getTag();
 
         Intent tokenI = getIntent();
         String token = tokenI.getStringExtra("token");
 
         Intent i = new Intent(RoomsActivity.this, InfoActivity.class);
         i.putExtra("token", token);
-        i.putExtra("id", ""+id);
+        i.putExtra("idRoom", ""+idRoom);
         startActivity(i);
     }
     public void onClickAjouter(View view) {
@@ -64,10 +64,10 @@ public class RoomsActivity extends AppCompatActivity {
     public void onClickSupprimer(View view) {
         Intent tokenI = getIntent();
         String token = tokenI.getStringExtra("token");
-        int id = (int) view.getTag();
+        int idRoom = (int) view.getTag();
         AndroidNetworking.post("https://myhouse.lesmoulinsdudev.com/room-delete")
                 .addHeaders("Authorization", "Bearer "+token)
-                .addBodyParameter("idRoom",""+id)
+                .addBodyParameter("idRoom",""+idRoom)
                 .build()
                 .getAsOkHttpResponse(new OkHttpResponseListener() {
                     @Override
