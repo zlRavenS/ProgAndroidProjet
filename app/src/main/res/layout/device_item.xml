@@ -6,22 +6,17 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/image_capteur"
+        android:id="@+id/imageView"
         android:layout_width="50dp"
         android:layout_height="50dp"
-<<<<<<< Updated upstream
-        android:layout_marginStart="148dp"
-        android:layout_marginTop="20dp"
-=======
         android:layout_marginStart="10dp"
         android:layout_marginTop="15dp"
->>>>>>> Stashed changes
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/texte_capteur"
+        android:id="@+id/texte_periph"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
@@ -34,38 +29,37 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/type_capteur"
+        android:id="@+id/type_periph"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
         android:text="Type"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/texte_capteur" />
+        app:layout_constraintTop_toBottomOf="@+id/texte_periph" />
+
+    <Switch
+        android:id="@+id/switch_periph"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:checked="false"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toStartOf="@+id/button_deleteDevice"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:checked="true" />
 
     <Button
-        android:id="@+id/button_deleteSensor"
+        android:id="@+id/button_deleteDevice"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="15dp"
-        android:onClick="onClickSupprimerCapteur"
         android:text="-"
         app:backgroundTint="#FF0000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/texte_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
-        android:text="Value"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/button_deleteSensor"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F8F8F8"
     tools:context=".InfoActivity">
 
     <TextView
@@ -11,6 +12,7 @@
         android:layout_width="409dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:background="#FFFFFF"
         android:text="Room"
         android:textAlignment="center"
         android:textColor="#000000"
@@ -24,14 +26,19 @@
         android:layout_width="205dp"
         android:layout_height="596dp"
         android:layout_marginTop="1dp"
+        android:background="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_addSensor" />
 
     <ListView
+<<<<<<< Updated upstream
         android:id="@+id/liste_peripheriques"
+=======
+>>>>>>> Stashed changes
         android:layout_width="205dp"
         android:layout_height="596dp"
         android:layout_marginTop="1dp"
+        android:background="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_addDevice" />
 
@@ -41,7 +48,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
         android:text="Capteurs"
+        android:textColor="#000000"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/button_addSensor"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,6 +64,7 @@
         android:layout_marginTop="25dp"
         android:onClick="onClickAjouterCapteur"
         android:text="+"
+        app:backgroundTint="#0099FF"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/roomName" />
 
@@ -64,7 +74,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
         android:text="Périphériques"
+        android:textColor="#000000"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button_addDevice"
@@ -78,6 +90,7 @@
         android:layout_marginTop="25dp"
         android:onClick="onClickAjouterPeripherique"
         android:text="+"
+        app:backgroundTint="#0099FF"
         app:layout_constraintStart_toEndOf="@+id/button_addSensor"
         app:layout_constraintTop_toBottomOf="@+id/roomName" />
 

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".AddRoomActivity">
 
     <TextView
@@ -12,18 +13,30 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="90dp"
         android:text="Nom du capteur"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
+<<<<<<< Updated upstream
         android:id="@+id/new_name_peripherique"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+=======
+        android:id="@+id/new_name_capteur"
+        android:layout_width="260dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+>>>>>>> Stashed changes
         android:ems="10"
+        android:hint="Entrez un nom"
         android:inputType="textPersonName"
+        android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,9 +46,15 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< Updated upstream
         android:layout_marginTop="60dp"
         android:onClick="onClickValiderDevice"
+=======
+        android:layout_marginTop="40dp"
+        android:onClick="onClickValider"
+>>>>>>> Stashed changes
         android:text="Valider"
+        app:backgroundTint="#47C823"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,20 +64,32 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
         android:text="Type du capteur"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/new_name_peripherique" />
 
     <Spinner
+<<<<<<< Updated upstream
         android:id="@+id/new_type_peripherique"
         android:layout_width="259dp"
         android:layout_height="31dp"
         android:layout_marginTop="20dp"
+=======
+        android:id="@+id/new_type_capteur"
+        android:layout_width="260dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:background="#E4E4E4"
+>>>>>>> Stashed changes
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        tools:ignore="SpeakableTextPresentCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>
