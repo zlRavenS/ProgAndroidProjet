@@ -41,6 +41,9 @@ public class InfoActivity extends AppCompatActivity {
         loadPeripheriques(token, idRoom);
 
     }
+
+
+
     public void onClickAjouterCapteur(View view) {
         Intent tokenI = getIntent();
         String token = tokenI.getStringExtra("token");
@@ -51,6 +54,7 @@ public class InfoActivity extends AppCompatActivity {
         i.putExtra("idRoom", ""+idRoom);
         startActivity(i);
     }
+
     public void onClickSupprimerCapteur(View view) {
         Intent tokenI = getIntent();
         String token = tokenI.getStringExtra("token");
@@ -88,6 +92,7 @@ public class InfoActivity extends AppCompatActivity {
 
 
     }
+
     public void loadCapteurs(String token, String idRoom) {
         Context that = this;
 
@@ -120,6 +125,10 @@ public class InfoActivity extends AppCompatActivity {
                 });
     }
 
+
+
+
+
     public void loadPeripheriques(String token, String idRoom) {
         Context that = this;
 
@@ -151,6 +160,7 @@ public class InfoActivity extends AppCompatActivity {
                     }
                 });
     }
+
     public void onClickAjouterPeripherique(View view) {
         Intent tokenI = getIntent();
         String token = tokenI.getStringExtra("token");
@@ -161,6 +171,7 @@ public class InfoActivity extends AppCompatActivity {
         i.putExtra("idRoom", ""+idRoom);
         startActivity(i);
     }
+
     public void onClickSupprimerPeripherique(View view) {
         Intent tokenI = getIntent();
         String token = tokenI.getStringExtra("token");

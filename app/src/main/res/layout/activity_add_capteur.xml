@@ -22,17 +22,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-<<<<<<< Updated upstream
         android:id="@+id/new_name_peripherique"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-=======
-        android:id="@+id/new_name_capteur"
         android:layout_width="260dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="15dp"
->>>>>>> Stashed changes
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Entrez un nom"
         android:inputType="textPersonName"
@@ -46,13 +39,8 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-<<<<<<< Updated upstream
-        android:layout_marginTop="60dp"
-        android:onClick="onClickValiderDevice"
-=======
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="50dp"
         android:onClick="onClickValider"
->>>>>>> Stashed changes
         android:text="Valider"
         app:backgroundTint="#47C823"
         app:layout_constraintEnd_toEndOf="parent"
@@ -75,18 +63,11 @@
         app:layout_constraintTop_toBottomOf="@+id/new_name_peripherique" />
 
     <Spinner
-<<<<<<< Updated upstream
         android:id="@+id/new_type_peripherique"
-        android:layout_width="259dp"
-        android:layout_height="31dp"
-        android:layout_marginTop="20dp"
-=======
-        android:id="@+id/new_type_capteur"
         android:layout_width="260dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="15dp"
-        android:background="#E4E4E4"
->>>>>>> Stashed changes
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:background="#FAFAFA"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

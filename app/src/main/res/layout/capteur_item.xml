@@ -9,13 +9,8 @@
         android:id="@+id/image_capteur"
         android:layout_width="50dp"
         android:layout_height="50dp"
-<<<<<<< Updated upstream
-        android:layout_marginStart="148dp"
-        android:layout_marginTop="20dp"
-=======
         android:layout_marginStart="10dp"
         android:layout_marginTop="15dp"
->>>>>>> Stashed changes
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
@@ -51,9 +46,10 @@
         android:layout_marginEnd="15dp"
         android:onClick="onClickSupprimerCapteur"
         android:text="-"
-        app:backgroundTint="#FF0000"
+        app:backgroundTint="#D80C0C"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/texte_value"

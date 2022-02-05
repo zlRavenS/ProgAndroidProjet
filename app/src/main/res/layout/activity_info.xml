@@ -31,10 +31,7 @@
         app:layout_constraintTop_toBottomOf="@+id/button_addSensor" />
 
     <ListView
-<<<<<<< Updated upstream
         android:id="@+id/liste_peripheriques"
-=======
->>>>>>> Stashed changes
         android:layout_width="205dp"
         android:layout_height="596dp"
         android:layout_marginTop="1dp"

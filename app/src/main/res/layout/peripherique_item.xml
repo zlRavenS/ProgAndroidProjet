@@ -9,52 +9,58 @@
         android:id="@+id/img_peripherique"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        tools:layout_editor_absoluteX="222dp"
-        tools:layout_editor_absoluteY="16dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/texte_nom_peripherique"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="15dp"
         android:text="Name"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/button_supprimer_peripherique"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/texte_type_peripherique"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
         android:text="Type"
-        app:layout_constraintStart_toEndOf="@+id/button_supprimer_peripherique"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/texte_nom_peripherique" />
 
     <Button
         android:id="@+id/button_supprimer_peripherique"
-        android:layout_width="48dp"
+        android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
         android:onClick="onClickSupprimerPeripherique"
         android:text="-"
-        app:backgroundTint="#FF0000"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button_etat_peripherique"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="7dp"
-        android:onClick="onClickEtat"
-        app:backgroundTint="#FF0000"
+        app:backgroundTint="#D80C0C"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toStartOf="@+id/button_supprimer_peripherique"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:checked="true" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
