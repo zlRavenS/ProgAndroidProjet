@@ -10,8 +10,10 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +45,7 @@ public class InfoActivity extends AppCompatActivity {
 
         loadCapteurs(token, idRoom);
         loadPeripheriques(token, idRoom);
+
     }
 
 
@@ -218,23 +221,18 @@ public class InfoActivity extends AppCompatActivity {
         String idRoom = tokenI.getStringExtra("idRoom");
 
         int idDevice = (int) view.getTag();
-
-        /*Button button = view.findViewById(R.id.button_etat_peripherique);
-        String status = (String) button.getText();
-        int statu;
-
-        if(status=="1"){
-            statu = 0;
-        }else {
-            statu = 1;
+        boolean on = ((Switch) view).isChecked();
+        int etat;
+        if(on) {
+            etat = 0;
+        } else {
+            etat = 1;
         }
-        */
-
 
         AndroidNetworking.post("https://myhouse.lesmoulinsdudev.com/device-status")
                 .addHeaders("Authorization", "Bearer "+token)
                 .addBodyParameter("idDevice",""+idDevice)
-                .addBodyParameter("idDevice",""+0)
+                .addBodyParameter("status",""+etat)
                 .build()
                 .getAsOkHttpResponse(new OkHttpResponseListener() {
                     @Override
@@ -252,7 +250,6 @@ public class InfoActivity extends AppCompatActivity {
                         }
 
                     }
-
                     @Override
                     public void onError(ANError anError) {
                         Toast toastError = Toast.makeText(InfoActivity.this, "Erreur", Toast.LENGTH_SHORT);

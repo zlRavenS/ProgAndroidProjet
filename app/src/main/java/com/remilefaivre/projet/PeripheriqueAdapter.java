@@ -102,21 +102,12 @@ public class PeripheriqueAdapter extends BaseAdapter implements ListAdapter {
         nameField.setText(name);
         typeField.setText(type);
         deleteDevice.setTag(id);
-        stateDevice.setTag(id);
         if(status==1){
-            Drawable buttonDrawable = stateDevice.getBackground();
-            buttonDrawable = DrawableCompat.wrap(buttonDrawable);
-            //the color is a direct color int and not a color resource
-            DrawableCompat.setTint(buttonDrawable, Color.GREEN);
-            stateDevice.setBackground(buttonDrawable);
+            stateDevice.setChecked(true);
         }else{
-            Drawable buttonDrawable = stateDevice.getBackground();
-            buttonDrawable = DrawableCompat.wrap(buttonDrawable);
-            //the color is a direct color int and not a color resource
-            DrawableCompat.setTint(buttonDrawable, Color.RED);
-            stateDevice.setBackground(buttonDrawable);
+            stateDevice.setChecked(false);
         }
-
+        stateDevice.setTag(id);
 
         return view;
     }

@@ -121,6 +121,7 @@ public class CapteurAdapter extends BaseAdapter implements ListAdapter {
                         anError.getErrorCode();
                     }
                 });
+
         return view;
     }
 }
