@@ -11,7 +11,7 @@
         android:id="@+id/roomName"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="15dp"
         android:background="#FFFFFF"
         android:text="Room"
         android:textAlignment="center"
@@ -23,7 +23,7 @@
 
     <ListView
         android:id="@+id/liste_capteurs"
-        android:layout_width="205dp"
+        android:layout_width="200dp"
         android:layout_height="596dp"
         android:layout_marginTop="1dp"
         android:background="#FFFFFF"
@@ -32,7 +32,7 @@
 
     <ListView
         android:id="@+id/liste_peripheriques"
-        android:layout_width="205dp"
+        android:layout_width="185dp"
         android:layout_height="596dp"
         android:layout_marginTop="1dp"
         android:background="#FFFFFF"
@@ -90,5 +90,17 @@
         app:backgroundTint="#0099FF"
         app:layout_constraintStart_toEndOf="@+id/button_addSensor"
         app:layout_constraintTop_toBottomOf="@+id/roomName" />
+
+    <Button
+        android:id="@+id/back_button"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="15dp"
+        android:onClick="onClickReturnRooms"
+        app:backgroundTint="#D80C0C"
+        app:icon="@drawable/abc_vector_test"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

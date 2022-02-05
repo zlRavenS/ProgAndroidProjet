@@ -52,11 +52,11 @@
         tools:ignore="TouchTargetSizeCheck" />
 
     <Switch
-        android:id="@+id/switch1"
+        android:id="@+id/device_state"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="5dp"
         android:minWidth="48dp"
         android:minHeight="48dp"
         app:layout_constraintEnd_toStartOf="@+id/button_supprimer_peripherique"

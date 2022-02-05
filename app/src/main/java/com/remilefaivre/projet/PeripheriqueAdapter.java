@@ -12,6 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -84,7 +85,7 @@ public class PeripheriqueAdapter extends BaseAdapter implements ListAdapter {
         TextView typeField = view.findViewById(R.id.texte_type_peripherique);
         ImageView imgDevice = view.findViewById(R.id.img_peripherique);
         Button deleteDevice = view.findViewById(R.id.button_supprimer_peripherique);
-        Button button = view.findViewById(R.id.button_etat_peripherique);
+        Switch stateDevice = view.findViewById(R.id.device_state);
 
 
         try {
@@ -101,19 +102,19 @@ public class PeripheriqueAdapter extends BaseAdapter implements ListAdapter {
         nameField.setText(name);
         typeField.setText(type);
         deleteDevice.setTag(id);
-        button.setTag(id);
+        stateDevice.setTag(id);
         if(status==1){
-            Drawable buttonDrawable = button.getBackground();
+            Drawable buttonDrawable = stateDevice.getBackground();
             buttonDrawable = DrawableCompat.wrap(buttonDrawable);
             //the color is a direct color int and not a color resource
             DrawableCompat.setTint(buttonDrawable, Color.GREEN);
-            button.setBackground(buttonDrawable);
+            stateDevice.setBackground(buttonDrawable);
         }else{
-            Drawable buttonDrawable = button.getBackground();
+            Drawable buttonDrawable = stateDevice.getBackground();
             buttonDrawable = DrawableCompat.wrap(buttonDrawable);
             //the color is a direct color int and not a color resource
             DrawableCompat.setTint(buttonDrawable, Color.RED);
-            button.setBackground(buttonDrawable);
+            stateDevice.setBackground(buttonDrawable);
         }
 
 

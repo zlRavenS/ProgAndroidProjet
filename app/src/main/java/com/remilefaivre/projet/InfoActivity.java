@@ -127,8 +127,6 @@ public class InfoActivity extends AppCompatActivity {
 
 
 
-
-
     public void loadPeripheriques(String token, String idRoom) {
         Context that = this;
 
@@ -179,9 +177,9 @@ public class InfoActivity extends AppCompatActivity {
 
         int idDevice = (int) view.getTag();
 
-        AndroidNetworking.post("https://myhouse.lesmoulinsdudev.com/sensor-delete")
+        AndroidNetworking.post("https://myhouse.lesmoulinsdudev.com/device-delete")
                 .addHeaders("Authorization", "Bearer "+token)
-                .addBodyParameter("idSensor",""+idDevice)
+                .addBodyParameter("idDevice",""+idDevice)
                 .build()
                 .getAsOkHttpResponse(new OkHttpResponseListener() {
                     @Override
@@ -257,5 +255,11 @@ public class InfoActivity extends AppCompatActivity {
                         toastError.show();
                     }
                 });
+    }
+
+
+    public void onClickReturnRooms(View view) {
+        Intent i = new Intent(InfoActivity.this, RoomsActivity.class);
+        startActivity(i);
     }
 }
