@@ -263,7 +263,11 @@ public class InfoActivity extends AppCompatActivity {
 
 
     public void onClickReturnRooms(View view) {
+        Intent tokenI = getIntent();
+        String token = tokenI.getStringExtra("token");
+
         Intent i = new Intent(InfoActivity.this, RoomsActivity.class);
+        i.putExtra("token", token);
         startActivity(i);
     }
 }
