@@ -100,7 +100,7 @@ public class RoomAdapter extends BaseAdapter implements ListAdapter {
     }
 
     // show The Image in a ImageView
-    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+    class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;
 
         public DownloadImageTask(ImageView bmImage) {
