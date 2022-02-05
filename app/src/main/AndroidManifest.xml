@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProgAndroidProjet">
         <activity
+            android:name=".AddPeripheriqueActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddCapteurActivity"
             android:exported="false" />
         <activity

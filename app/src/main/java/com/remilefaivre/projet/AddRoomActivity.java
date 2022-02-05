@@ -29,7 +29,7 @@ public class AddRoomActivity extends AppCompatActivity {
         Intent tokenI = getIntent();
         String token = tokenI.getStringExtra("token");
 
-        EditText newNameField = (EditText) findViewById(R.id.new_name_capteur);
+        EditText newNameField = (EditText) findViewById(R.id.new_name_peripherique);
         String newName = String.valueOf(newNameField.getText());
 
         AndroidNetworking.post("https://myhouse.lesmoulinsdudev.com/room-create")

@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/new_name_capteur"
+        android:id="@+id/new_name_peripherique"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -34,12 +34,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
-        android:onClick="onClickValider"
+        android:onClick="onClickValiderDevice"
         android:text="Valider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/new_type_capteur" />
+        app:layout_constraintTop_toBottomOf="@+id/new_type_peripherique" />
 
     <TextView
         android:id="@+id/textView4"
@@ -50,10 +50,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/new_name_capteur" />
+        app:layout_constraintTop_toBottomOf="@+id/new_name_peripherique" />
 
     <Spinner
-        android:id="@+id/new_type_capteur"
+        android:id="@+id/new_type_peripherique"
         android:layout_width="259dp"
         android:layout_height="31dp"
         android:layout_marginTop="20dp"

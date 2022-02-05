@@ -38,11 +38,13 @@ public class CapteurAdapter extends BaseAdapter implements ListAdapter {
     String name;
     String type;
     int id;
+    String token;
 
-    public CapteurAdapter(@NonNull Context context, int obj, JSONArray capteurs) {
+    public CapteurAdapter(@NonNull Context context, int obj, JSONArray capteurs, String token) {
         this.context=context;
         this.obj=obj;
         this.capteurs=capteurs;
+        this.token = token;
     }
 
 
@@ -78,6 +80,7 @@ public class CapteurAdapter extends BaseAdapter implements ListAdapter {
         ImageView imgSensor = view.findViewById(R.id.image_capteur);
         Button deleteSensor = view.findViewById(R.id.button_deleteSensor);
 
+
         try {
             name = capteurs.getJSONObject(position).getString("name");
             urlPicture =  capteurs.getJSONObject(position).getString("picture");
@@ -91,6 +94,33 @@ public class CapteurAdapter extends BaseAdapter implements ListAdapter {
         nameField.setText(name);
         typeField.setText(type);
         deleteSensor.setTag(id);
+
+
+        TextView valueField = view.findViewById(R.id.texte_value);
+        AndroidNetworking.get("https://myhouse.lesmoulinsdudev.com/sensor-value?idSensor="+id)
+                .addHeaders("Authorization","Bearer " + token)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Double value;
+                        String unit;
+                        try {
+                            value = response.getDouble("value");
+                            unit =  response.getString("unit");
+
+                            valueField.setText(""+value + ""+unit);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        anError.getErrorCode();
+                    }
+                });
         return view;
     }
 }
