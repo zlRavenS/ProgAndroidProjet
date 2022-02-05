@@ -15,4 +15,6 @@ public class Picture {
     public String getURL() {
         return url;
     }
+
+    public String toString() { return url; }
 }

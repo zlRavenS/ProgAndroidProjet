@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/new_name_peripherique"
+        android:id="@+id/new_name_room"
         android:layout_width="260dp"
         android:layout_height="48dp"
         android:layout_marginTop="20dp"
@@ -60,7 +60,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/new_name_peripherique" />
+        app:layout_constraintTop_toBottomOf="@+id/new_name_room" />
 
     <Spinner
         android:id="@+id/new_type_peripherique"

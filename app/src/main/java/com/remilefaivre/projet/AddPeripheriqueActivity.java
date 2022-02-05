@@ -41,7 +41,7 @@ public class AddPeripheriqueActivity extends AppCompatActivity {
         String token = tokenI.getStringExtra("token");
         String idRoom = tokenI.getStringExtra("idRoom");
 
-        EditText newNameField = (EditText) findViewById(R.id.new_name_peripherique);
+        EditText newNameField = (EditText) findViewById(R.id.new_name_room);
         String newName = String.valueOf(newNameField.getText());
 
         Spinner newTypeField = (Spinner) findViewById(R.id.new_type_peripherique);
