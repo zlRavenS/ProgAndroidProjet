@@ -36,10 +36,13 @@ public class InfoActivity extends AppCompatActivity {
         Intent tokenI = getIntent();
         String token = tokenI.getStringExtra("token");
         String idRoom = tokenI.getStringExtra("idRoom");
+        //String nameRoom = "";
+
+        TextView titre = findViewById(R.id.roomName);
+        titre.setText("Pièce n°"+idRoom);
 
         loadCapteurs(token, idRoom);
         loadPeripheriques(token, idRoom);
-
     }
 
 
@@ -97,6 +100,7 @@ public class InfoActivity extends AppCompatActivity {
         Context that = this;
 
         ListView listCapteurs = findViewById(R.id.liste_capteurs);
+
 
 
         AndroidNetworking.get("https://myhouse.lesmoulinsdudev.com/sensors?idRoom="+idRoom)
