@@ -28,6 +28,7 @@
         android:layout_marginEnd="40dp"
         android:onClick="onClickAjouter"
         android:text="Ajouter"
+        app:backgroundTint="#0099FF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
