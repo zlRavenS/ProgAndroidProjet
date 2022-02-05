@@ -36,10 +36,10 @@ public class InfoActivity extends AppCompatActivity {
         Intent tokenI = getIntent();
         String token = tokenI.getStringExtra("token");
         String idRoom = tokenI.getStringExtra("idRoom");
-        //String nameRoom = "";
+        String titreRoom = tokenI.getStringExtra("nameRoom");
 
         TextView titre = findViewById(R.id.roomName);
-        titre.setText("Pièce n°"+idRoom);
+        titre.setText(titreRoom);
 
         loadCapteurs(token, idRoom);
         loadPeripheriques(token, idRoom);

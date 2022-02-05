@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
@@ -46,12 +47,17 @@ public class RoomsActivity extends AppCompatActivity {
     public void onClickItem(View view) {
         int idRoom = (int) view.getTag();
 
+        TextView nameRoom = view.findViewById(R.id.texte_room);
+        String titreRoom = nameRoom.getText().toString();
+
         Intent tokenI = getIntent();
         String token = tokenI.getStringExtra("token");
 
         Intent i = new Intent(RoomsActivity.this, InfoActivity.class);
         i.putExtra("token", token);
         i.putExtra("idRoom", ""+idRoom);
+        i.putExtra("nameRoom", titreRoom);
+
         startActivity(i);
     }
     public void onClickAjouter(View view) {
