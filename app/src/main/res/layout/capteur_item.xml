@@ -10,7 +10,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
@@ -36,7 +36,7 @@
         android:layout_marginEnd="15dp"
         android:background="@android:drawable/ic_menu_delete"
         android:onClick="onClickSupprimerCapteur"
-        app:backgroundTint="#FF0000"
+        app:backgroundTint="#D80C0C"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="TouchTargetSizeCheck" />
