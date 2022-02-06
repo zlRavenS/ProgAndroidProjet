@@ -1,5 +1,6 @@
 package com.remilefaivre.projet;
 
+// Classe d'un type de périphérique
 public class DeviceType {
     private int id;
     private String name;
