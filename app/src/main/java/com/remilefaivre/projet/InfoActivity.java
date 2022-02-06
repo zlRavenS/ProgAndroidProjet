@@ -116,9 +116,9 @@ public class InfoActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(JSONObject response) {
                     try {
-                        JSONArray capteurs = response.getJSONArray("sensors");
+                        JSONArray sensors = response.getJSONArray("sensors");
 
-                        CapteurAdapter capteurAdapter = new CapteurAdapter(that,R.layout.capteur_item, capteurs, token);
+                        CapteurAdapter capteurAdapter = new CapteurAdapter(that,R.layout.capteur_item, sensors, token);
                         listSensors.setAdapter(capteurAdapter);
 
                     } catch (JSONException e) {
