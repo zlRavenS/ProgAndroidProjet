@@ -25,17 +25,20 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void register(View view) {
-        final EditText champNom = (EditText) findViewById(R.id.txt_name);
-        String name = champNom.getText().toString();
-        final EditText champEmail = (EditText) findViewById(R.id.txt_mail);
-        String email = champEmail.getText().toString();
-        final EditText champMdp = (EditText) findViewById(R.id.txt_password);
-        String mdp = champMdp.getText().toString();
+
+        EditText nameField = findViewById(R.id.txt_name);
+        String name = nameField.getText().toString();
+
+        EditText emailField = findViewById(R.id.txt_mail);
+        String email = emailField.getText().toString();
+
+        EditText passwordField = findViewById(R.id.txt_password);
+        String pwd = passwordField.getText().toString();
 
         AndroidNetworking.post("https://myhouse.lesmoulinsdudev.com/register")
                 .addBodyParameter("name", name)
                 .addBodyParameter("login", email)
-                .addBodyParameter("password", mdp)
+                .addBodyParameter("password", pwd)
                 .build()
                 .getAsOkHttpResponse(new OkHttpResponseListener() {
                     @Override

@@ -3,21 +3,21 @@ package com.remilefaivre.projet;
 public class DeviceType {
     private int id;
     private String name;
-    private String urlPicture;
+    private String uriPicture;
 
 
-    public DeviceType(int id, String name, String urlPicture) {
+    public DeviceType(int id, String name, String uriPicture) {
         this.id = id;
         this.name = name;
-        this.urlPicture = urlPicture;
+        this.uriPicture = uriPicture;
     }
 
 
     public int getId() {
         return id;
     }
-    public String getUrlPicture() {
-        return urlPicture;
+    public String getUriPicture() {
+        return uriPicture;
     }
     public String getName() {
         return name;

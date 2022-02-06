@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/new_name_room"
+        android:id="@+id/new_name_text"
         android:layout_width="260dp"
         android:layout_height="48dp"
         android:layout_marginTop="20dp"
@@ -36,7 +36,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/button_ok"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -46,7 +46,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/new_type_peripherique" />
+        app:layout_constraintTop_toBottomOf="@+id/new_type_spinner" />
 
     <TextView
         android:id="@+id/textView4"
@@ -60,10 +60,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/new_name_room" />
+        app:layout_constraintTop_toBottomOf="@+id/new_name_text" />
 
     <Spinner
-        android:id="@+id/new_type_peripherique"
+        android:id="@+id/new_type_spinner"
         android:layout_width="260dp"
         android:layout_height="48dp"
         android:layout_marginTop="20dp"

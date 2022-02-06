@@ -11,6 +11,7 @@
         android:layout_height="50dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
+        android:alpha="50"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
@@ -20,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         android:text="Name"
         android:textColor="#000000"
         android:textSize="16sp"
@@ -39,7 +40,7 @@
         app:backgroundTint="#D80C0C"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="TouchTargetSizeCheck" />
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <Switch
         android:id="@+id/device_state"

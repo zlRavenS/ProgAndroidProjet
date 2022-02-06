@@ -31,22 +31,20 @@ public class AddPeripheriqueActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_peripherique);
 
-        loadCapteurType();
+        loadDeviceType();
     }
 
     public void onClickValider(View view) {
-        Context that = this;
 
-        Intent tokenI = getIntent();
-        String token = tokenI.getStringExtra("token");
-        String idRoom = tokenI.getStringExtra("idRoom");
+        Intent intent = getIntent();
+        String token = intent.getStringExtra("token");
+        String idRoom = intent.getStringExtra("idRoom");
 
-        EditText newNameField = (EditText) findViewById(R.id.new_name_room);
+        EditText newNameField = (EditText) findViewById(R.id.new_name_text);
         String newName = String.valueOf(newNameField.getText());
 
-        Spinner newTypeField = (Spinner) findViewById(R.id.new_type_peripherique);
+        Spinner newTypeField = (Spinner) findViewById(R.id.new_type_spinner);
         DeviceType newType = (DeviceType) newTypeField.getSelectedItem();
-
 
         AndroidNetworking.post("https://myhouse.lesmoulinsdudev.com/device-create")
                 .addHeaders("Authorization", "Bearer "+token)
@@ -81,7 +79,7 @@ public class AddPeripheriqueActivity extends AppCompatActivity {
                 });
     }
 
-    public void loadCapteurType() {
+    public void loadDeviceType() {
         Context that = this;
 
         AndroidNetworking.get("https://myhouse.lesmoulinsdudev.com/device-types")
@@ -90,13 +88,13 @@ public class AddPeripheriqueActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            JSONArray types = response.getJSONArray("device-types");
+                            JSONArray deviceTypes = response.getJSONArray("device-types");
 
                             ArrayList<DeviceType> typeList = new ArrayList<>();
 
-                            for(int iType = 0; iType < types.length(); ++iType)
+                            for(int iType = 0; iType < deviceTypes.length(); ++iType)
                             {
-                                final JSONObject type = types.getJSONObject(iType);
+                                final JSONObject type = deviceTypes.getJSONObject(iType);
                                 typeList.add(new DeviceType(
                                         type.getInt("id"),
                                         type.getString("name"),
@@ -110,7 +108,7 @@ public class AddPeripheriqueActivity extends AppCompatActivity {
                                     typeList
                             );
 
-                            Spinner spinnerType = findViewById(R.id.new_type_peripherique);
+                            Spinner spinnerType = findViewById(R.id.new_type_spinner);
 
                             spinnerType.setAdapter(adapter);
                         }

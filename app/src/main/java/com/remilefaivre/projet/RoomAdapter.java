@@ -3,7 +3,6 @@ package com.remilefaivre.projet;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,11 +21,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 public class RoomAdapter extends BaseAdapter implements ListAdapter {
 
@@ -35,33 +30,32 @@ public class RoomAdapter extends BaseAdapter implements ListAdapter {
 
     //Objet du layout
     int obj;
-    int resource;
 
-    JSONArray room;
+    JSONArray rooms;
 
     String urlPicture;
     String name;
     int id;
 
-    public RoomAdapter(@NonNull Context context, int obj, JSONArray room) {
+    public RoomAdapter(@NonNull Context context, int obj, JSONArray rooms) {
         this.context=context;
         this.obj=obj;
-        this.room=room;
+        this.rooms = rooms;
     }
 
 
     @Override
     public int getCount() {
-        if(null==room)
+        if(null== rooms)
             return 0;
         else
-            return room.length();
+            return rooms.length();
     }
     @Override
     public Object getItem(int i) {
-        if(null==room) return null;
+        if(null== rooms) return null;
         else
-            return room.optJSONObject(i);
+            return rooms.optJSONObject(i);
     }
     @Override
     public long getItemId(int i) {
@@ -81,14 +75,12 @@ public class RoomAdapter extends BaseAdapter implements ListAdapter {
         ConstraintLayout myView = view.findViewById(R.id.my_view);
 
         try {
-            name = room.getJSONObject(position).getString("name");
-            urlPicture =  room.getJSONObject(position).getString("picture");
-            id = room.getJSONObject(position).getInt("id");
+            name = rooms.getJSONObject(position).getString("name");
+            urlPicture =  rooms.getJSONObject(position).getString("picture");
+            id = rooms.getJSONObject(position).getInt("id");
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        //imgRoom.setImageURI(Uri.parse());
 
         textRoom.setText(name);
         deleteRoom.setTag(id);

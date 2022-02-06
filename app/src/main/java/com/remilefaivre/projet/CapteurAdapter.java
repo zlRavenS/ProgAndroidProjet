@@ -14,11 +14,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
@@ -37,7 +35,6 @@ public class CapteurAdapter extends BaseAdapter implements ListAdapter {
 
     //Objet du layout
     int obj;
-    int resource;
     JSONArray capteurs;
 
     String urlPicture;
@@ -82,7 +79,6 @@ public class CapteurAdapter extends BaseAdapter implements ListAdapter {
         View view = layoutInflater.inflate(obj, null, false);
 
         TextView nameField = view.findViewById(R.id.texte_capteur);
-        //TextView typeField = view.findViewById(R.id.type_capteur);
         ImageView imgSensor = view.findViewById(R.id.image_capteur);
         Button deleteSensor = view.findViewById(R.id.button_deleteSensor);
 
@@ -98,38 +94,37 @@ public class CapteurAdapter extends BaseAdapter implements ListAdapter {
 
         imgSensor.setImageURI(Uri.parse(urlPicture));
         nameField.setText(name);
-        //typeField.setText(type);
         deleteSensor.setTag(id);
 
 
         TextView valueField = view.findViewById(R.id.texte_value);
         AndroidNetworking.get("https://myhouse.lesmoulinsdudev.com/sensor-value?idSensor="+id)
-                .addHeaders("Authorization","Bearer " + token)
-                .build()
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Double value;
-                        String unit;
-                        try {
-                            value = response.getDouble("value");
-                            unit =  response.getString("unit");
+            .addHeaders("Authorization","Bearer " + token)
+            .build()
+            .getAsJSONObject(new JSONObjectRequestListener() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    Double value;
+                    String unit;
+                    try {
+                        value = response.getDouble("value");
+                        unit =  response.getString("unit");
 
-                            valueField.setText(""+value + ""+unit);
+                        valueField.setText(""+value + ""+unit);
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
+                }
 
-                    @Override
-                    public void onError(ANError anError) {
-                        anError.getErrorCode();
-                    }
-                });
+                @Override
+                public void onError(ANError anError) {
+                    anError.getErrorCode();
+                }
+            });
 
         new CapteurAdapter.DownloadImageTask(imgSensor)
-                .execute("https://myhouse.lesmoulinsdudev.com/"+urlPicture);
+            .execute("https://myhouse.lesmoulinsdudev.com/"+ urlPicture);
         return view;
     }
 

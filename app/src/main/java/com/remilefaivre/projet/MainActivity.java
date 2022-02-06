@@ -29,37 +29,39 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickLogging(View view) {
-        final EditText champEmail = (EditText) findViewById(R.id.txt_mail);
-        String email = champEmail.getText().toString();
-        final EditText champMdp = (EditText) findViewById(R.id.txt_password);
-        String mdp = champMdp.getText().toString();
+
+        final EditText emailField = (EditText) findViewById(R.id.txt_mail);
+        String email = emailField.getText().toString();
+
+        final EditText passwordField = (EditText) findViewById(R.id.txt_password);
+        String pwd = passwordField.getText().toString();
 
         AndroidNetworking.post("https://myhouse.lesmoulinsdudev.com/auth")
-                .addBodyParameter("login", email)
-                .addBodyParameter("password", mdp)
-                .build()
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            String token = response.getString("token");
+            .addBodyParameter("login", email)
+            .addBodyParameter("password", pwd)
+            .build()
+            .getAsJSONObject(new JSONObjectRequestListener() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    try {
+                        String token = response.getString("token");
 
-                            Intent i = new Intent(MainActivity.this, RoomsActivity.class);
-                            i.putExtra("token", token);
-                            startActivity(i);
+                        Intent i = new Intent(MainActivity.this, RoomsActivity.class);
+                        i.putExtra("token", token);
+                        startActivity(i);
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
+                }
 
-                    @Override
-                    public void onError(ANError anError) {
-                        Toast toast = Toast.makeText(MainActivity.this, "Erreur", Toast.LENGTH_SHORT);
-                        toast.show();
-                        anError.getErrorCode();
-                    }
-                });
+                @Override
+                public void onError(ANError anError) {
+                    Toast toast = Toast.makeText(MainActivity.this, "Erreur", Toast.LENGTH_SHORT);
+                    toast.show();
+                    anError.getErrorCode();
+                }
+            });
 
     }
 }

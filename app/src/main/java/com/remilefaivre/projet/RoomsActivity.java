@@ -37,105 +37,115 @@ public class RoomsActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_rooms);
 
-        Intent tokenI = getIntent();
-        String token = tokenI.getStringExtra("token");
+        Intent intent = getIntent();
+        String token = intent.getStringExtra("token");
         loadRoomPicture(token);
         loadRooms(token);
-        //picture?type=
-
     }
+
     public void onClickItem(View view) {
+
         int idRoom = (int) view.getTag();
 
-        TextView nameRoom = view.findViewById(R.id.texte_room);
-        String titreRoom = nameRoom.getText().toString();
+        TextView nameField = view.findViewById(R.id.texte_room);
+        String nameRoom = nameField.getText().toString();
 
-        Intent tokenI = getIntent();
-        String token = tokenI.getStringExtra("token");
+        Intent intent = getIntent();
+        String token = intent.getStringExtra("token");
 
         Intent i = new Intent(RoomsActivity.this, InfoActivity.class);
         i.putExtra("token", token);
         i.putExtra("idRoom", ""+idRoom);
-        i.putExtra("nameRoom", titreRoom);
+        i.putExtra("nameRoom", nameRoom);
 
         startActivity(i);
     }
+
+
     public void onClickAjouter(View view) {
-        Intent tokenI = getIntent();
-        String token = tokenI.getStringExtra("token");
+
+        Intent intent = getIntent();
+        String token = intent.getStringExtra("token");
 
         Intent i = new Intent(RoomsActivity.this, AddRoomActivity.class);
         i.putExtra("token", token);
+
         startActivity(i);
     }
+
+
     public void onClickSupprimer(View view) {
-        Intent tokenI = getIntent();
-        String token = tokenI.getStringExtra("token");
+
+        Intent intent = getIntent();
+        String token = intent.getStringExtra("token");
+
         int idRoom = (int) view.getTag();
+
         AndroidNetworking.post("https://myhouse.lesmoulinsdudev.com/room-delete")
-                .addHeaders("Authorization", "Bearer "+token)
-                .addBodyParameter("idRoom",""+idRoom)
-                .build()
-                .getAsOkHttpResponse(new OkHttpResponseListener() {
-                    @Override
-                    public void onResponse(Response response) {
-                        switch (response.code()) {
-                            case 200:
-                                Intent i = new Intent(RoomsActivity.this, RoomsActivity.class);
-                                i.putExtra("token", token);
-                                startActivity(i);
-                                break;
-                            default:
-                                Toast toastError = Toast.makeText(RoomsActivity.this, "Erreur " + response.code(), Toast.LENGTH_SHORT);
-                                toastError.show();
-                        }
-
+            .addHeaders("Authorization", "Bearer "+token)
+            .addBodyParameter("idRoom",""+idRoom)
+            .build()
+            .getAsOkHttpResponse(new OkHttpResponseListener() {
+                @Override
+                public void onResponse(Response response) {
+                    switch (response.code()) {
+                        case 200:
+                            Intent i = new Intent(RoomsActivity.this, RoomsActivity.class);
+                            i.putExtra("token", token);
+                            startActivity(i);
+                            break;
+                        default:
+                            Toast toastError = Toast.makeText(RoomsActivity.this, "Erreur " + response.code(), Toast.LENGTH_SHORT);
+                            toastError.show();
                     }
 
-                    @Override
-                    public void onError(ANError anError) {
-                        Toast toastError = Toast.makeText(RoomsActivity.this, "Erreur", Toast.LENGTH_SHORT);
-                        toastError.show();
-                    }
-                });
+                }
+
+                @Override
+                public void onError(ANError anError) {
+                    Toast toastError = Toast.makeText(RoomsActivity.this, "Erreur", Toast.LENGTH_SHORT);
+                    toastError.show();
+                }
+            });
 
 
     }
 
     public void loadRooms(String token) {
+
         //Pour conserver le contexte de l'activité
         Context that = this;
 
         ListView listRooms = findViewById(R.id.liste_rooms);
 
-
         AndroidNetworking.get("https://myhouse.lesmoulinsdudev.com/rooms")
-                .addHeaders("Authorization","Bearer " + token)
-                .build()
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            JSONArray rooms = response.getJSONArray("rooms");
+            .addHeaders("Authorization","Bearer " + token)
+            .build()
+            .getAsJSONObject(new JSONObjectRequestListener() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    try {
+                        JSONArray rooms = response.getJSONArray("rooms");
 
-                            RoomAdapter roomAdapter = new RoomAdapter(that,R.layout.room_item, rooms);
-                            listRooms.setAdapter(roomAdapter);
+                        RoomAdapter roomAdapter = new RoomAdapter(that,R.layout.room_item, rooms);
+                        listRooms.setAdapter(roomAdapter);
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
+                }
 
-                    @Override
-                    public void onError(ANError anError) {
-                        Toast toastError = Toast.makeText(that,anError.getErrorBody(),Toast.LENGTH_SHORT);
-                        toastError.show();
-                        anError.getErrorCode();
-                    }
-                });
+                @Override
+                public void onError(ANError anError) {
+                    Toast toastError = Toast.makeText(that,anError.getErrorBody(),Toast.LENGTH_SHORT);
+                    toastError.show();
+                    anError.getErrorCode();
+                }
+            });
     }
 
     public void loadRoomPicture(String token) {
+
         //Pour conserver le contexte de l'activité
         Context that = this;
 
@@ -154,9 +164,6 @@ public class RoomsActivity extends AppCompatActivity {
 
                                 final JSONObject picture = pictures.getJSONObject(iPicture);
 
-                                //pictureList.add(new Picture(
-                                 //       picture.getInt("id"),
-                                  //      picture.getString("url")));
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

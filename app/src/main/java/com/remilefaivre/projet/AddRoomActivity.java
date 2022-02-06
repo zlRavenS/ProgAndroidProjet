@@ -40,7 +40,7 @@ public class AddRoomActivity extends AppCompatActivity {
         Intent tokenI = getIntent();
         String token = tokenI.getStringExtra("token");
 
-        EditText newNameField = (EditText) findViewById(R.id.new_name_room);
+        EditText newNameField = (EditText) findViewById(R.id.new_name_text);
         String newName = String.valueOf(newNameField.getText());
 
         Spinner newTypeField = (Spinner) findViewById(R.id.new_type_room);
