@@ -54,10 +54,12 @@ public class InfoActivity extends AppCompatActivity {
         Intent tokenI = getIntent();
         String token = tokenI.getStringExtra("token");
         String idRoom = tokenI.getStringExtra("idRoom");
+        String titreRoom = tokenI.getStringExtra("nameRoom");
 
         Intent i = new Intent(InfoActivity.this, AddCapteurActivity.class);
         i.putExtra("token", token);
         i.putExtra("idRoom", ""+idRoom);
+        i.putExtra("nameRoom", titreRoom);
         startActivity(i);
     }
 
@@ -65,6 +67,7 @@ public class InfoActivity extends AppCompatActivity {
         Intent tokenI = getIntent();
         String token = tokenI.getStringExtra("token");
         String idRoom = tokenI.getStringExtra("idRoom");
+        String titreRoom = tokenI.getStringExtra("nameRoom");
 
         int idSensor = (int) view.getTag();
 
@@ -80,6 +83,7 @@ public class InfoActivity extends AppCompatActivity {
                                 Intent i = new Intent(InfoActivity.this, InfoActivity.class);
                                 i.putExtra("token", token);
                                 i.putExtra("idRoom", idRoom);
+                                i.putExtra("nameRoom", titreRoom);
                                 startActivity(i);
                                 break;
                             default:
@@ -170,10 +174,12 @@ public class InfoActivity extends AppCompatActivity {
         Intent tokenI = getIntent();
         String token = tokenI.getStringExtra("token");
         String idRoom = tokenI.getStringExtra("idRoom");
+        String titreRoom = tokenI.getStringExtra("nameRoom");
 
         Intent i = new Intent(InfoActivity.this, AddPeripheriqueActivity.class);
         i.putExtra("token", token);
         i.putExtra("idRoom", ""+idRoom);
+        i.putExtra("nameRoom", titreRoom);
         startActivity(i);
     }
 
@@ -181,6 +187,7 @@ public class InfoActivity extends AppCompatActivity {
         Intent tokenI = getIntent();
         String token = tokenI.getStringExtra("token");
         String idRoom = tokenI.getStringExtra("idRoom");
+        String titreRoom = tokenI.getStringExtra("nameRoom");
 
         int idDevice = (int) view.getTag();
 
@@ -196,6 +203,7 @@ public class InfoActivity extends AppCompatActivity {
                                 Intent i = new Intent(InfoActivity.this, InfoActivity.class);
                                 i.putExtra("token", token);
                                 i.putExtra("idRoom", idRoom);
+                                i.putExtra("nameRoom", titreRoom);
                                 startActivity(i);
                                 break;
                             default:
@@ -219,6 +227,7 @@ public class InfoActivity extends AppCompatActivity {
         Intent tokenI = getIntent();
         String token = tokenI.getStringExtra("token");
         String idRoom = tokenI.getStringExtra("idRoom");
+        String titreRoom = tokenI.getStringExtra("nameRoom");
 
         int idDevice = (int) view.getTag();
         boolean on = ((Switch) view).isChecked();
@@ -242,6 +251,7 @@ public class InfoActivity extends AppCompatActivity {
                                 Intent i = new Intent(InfoActivity.this, InfoActivity.class);
                                 i.putExtra("token", token);
                                 i.putExtra("idRoom", idRoom);
+                                i.putExtra("nameRoom", titreRoom);
                                 startActivity(i);
                                 break;
                             default:

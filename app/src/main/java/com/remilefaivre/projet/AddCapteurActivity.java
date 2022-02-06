@@ -93,7 +93,7 @@ public class AddCapteurActivity extends AppCompatActivity {
                             JSONArray types = response.getJSONArray("sensor-types");
 
                             ArrayList<SensorType> typeList = new ArrayList<>();
-                            // Pour chaque pizza
+
                             for(int iType = 0; iType < types.length(); ++iType)
                             {
                                 final JSONObject type = types.getJSONObject(iType);
