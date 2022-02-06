@@ -17,15 +17,14 @@
 
     <TextView
         android:id="@+id/texte_capteur"
-        android:layout_width="wrap_content"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="30dp"
         android:text="Nom"
         android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/texte_value"
-        app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toEndOf="@+id/image_capteur"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,7 +33,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="25dp"
-        android:layout_marginEnd="25dp"
+        android:layout_marginEnd="10dp"
         android:background="@android:drawable/ic_menu_delete"
         android:onClick="onClickSupprimerCapteur"
         app:backgroundTint="#FF0000"
@@ -44,15 +43,15 @@
 
     <TextView
         android:id="@+id/texte_value"
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="20dp"
         android:text="Value"
         android:textColor="#000000"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/button_deleteSensor"
+        app:layout_constraintStart_toEndOf="@+id/texte_capteur"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

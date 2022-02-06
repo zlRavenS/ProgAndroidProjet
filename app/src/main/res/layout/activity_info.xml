@@ -9,14 +9,14 @@
 
     <TextView
         android:id="@+id/roomName"
-        android:layout_width="301dp"
-        android:layout_height="45dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="#FFFFFF"
         android:text="Room"
         android:textAlignment="center"
         android:textColor="#000000"
-        android:textSize="34sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -25,22 +25,26 @@
 
     <ListView
         android:id="@+id/liste_capteurs"
-        android:layout_width="409dp"
-        android:layout_height="250dp"
+        android:layout_width="wrap_content"
+        android:layout_height="260dp"
         android:layout_marginTop="5dp"
         android:background="#FFFFFF"
-        app:layout_constraintTop_toBottomOf="@+id/button_addSensor"
-        tools:layout_editor_absoluteX="1dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_addSensor" />
 
     <ListView
         android:id="@+id/liste_peripheriques"
-        android:layout_width="409dp"
-        android:layout_height="250dp"
-        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="270dp"
+        android:layout_marginTop="10dp"
         android:background="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_addDevice"
-        tools:layout_editor_absoluteX="1dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_addDevice" />
 
     <TextView
         android:id="@+id/textView_Capteurs"
@@ -65,14 +69,15 @@
         android:onClick="onClickAjouterCapteur"
         app:backgroundTint="#0099FF"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/roomName" />
+        app:layout_constraintTop_toBottomOf="@+id/roomName"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/textView_Peripheriques"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:text="Périphériques"
         android:textColor="#000000"
         android:textSize="20sp"
@@ -85,12 +90,13 @@
         android:layout_width="48dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="10dp"
         android:background="@android:drawable/ic_menu_add"
         android:onClick="onClickAjouterPeripherique"
         app:backgroundTint="#0099FF"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/liste_capteurs" />
+        app:layout_constraintTop_toBottomOf="@+id/liste_capteurs"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/back_button"
@@ -111,7 +117,10 @@
         android:layout_height="1dp"
         android:background="?android:attr/listDivider"
         app:layout_constraintBottom_toTopOf="@+id/button_addDevice"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/liste_capteurs"
-        tools:layout_editor_absoluteX="1dp" />
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

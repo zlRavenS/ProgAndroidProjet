@@ -57,13 +57,13 @@ public class InfoActivity extends AppCompatActivity {
         Intent tokenI = getIntent();
         String token = tokenI.getStringExtra("token");
         String idRoom = tokenI.getStringExtra("idRoom");
-        String titreRoom = tokenI.getStringExtra("nameRoom");
+        String nameRoom = tokenI.getStringExtra("nameRoom");
 
         // Lancement de l'activité AddCapteurActivity et donne en extra le token et l'ID de la pièce
         Intent i = new Intent(InfoActivity.this, AddCapteurActivity.class);
         i.putExtra("token", token);
         i.putExtra("idRoom", ""+idRoom);
-        i.putExtra("nameRoom", titreRoom);
+        i.putExtra("nameRoom", nameRoom);
         startActivity(i);
     }
 
@@ -188,13 +188,13 @@ public class InfoActivity extends AppCompatActivity {
         Intent tokenI = getIntent();
         String token = tokenI.getStringExtra("token");
         String idRoom = tokenI.getStringExtra("idRoom");
-        String titreRoom = tokenI.getStringExtra("nameRoom");
+        String nameRoom = tokenI.getStringExtra("nameRoom");
 
         // Lancement de l'activité AddPeripheriqueActivity et donne en extra le token et l'ID de la pièce
         Intent i = new Intent(InfoActivity.this, AddPeripheriqueActivity.class);
         i.putExtra("token", token);
         i.putExtra("idRoom", ""+idRoom);
-        i.putExtra("nameRoom", titreRoom);
+        i.putExtra("nameRoom", nameRoom);
         startActivity(i);
     }
 

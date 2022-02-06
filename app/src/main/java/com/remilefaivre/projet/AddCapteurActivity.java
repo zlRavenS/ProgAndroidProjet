@@ -39,6 +39,7 @@ public class AddCapteurActivity extends AppCompatActivity {
         Intent tokenI = getIntent();
         String token = tokenI.getStringExtra("token");
         String idRoom = tokenI.getStringExtra("idRoom");
+        String nameRoom = tokenI.getStringExtra("nameRoom");
 
         // Récupération du nom du nouveau capteur
         EditText newNameField = (EditText) findViewById(R.id.new_name_room);
@@ -53,7 +54,6 @@ public class AddCapteurActivity extends AppCompatActivity {
         AndroidNetworking.post("https://myhouse.lesmoulinsdudev.com/sensor-create")
                 .addHeaders("Authorization", "Bearer "+token)
                 .addBodyParameter("name", newName)
-                .addBodyParameter("idPicture","2")
                 .addBodyParameter("idSensorType",""+newType.getId())
                 .addBodyParameter("idRoom",""+idRoom)
                 .build()
@@ -66,6 +66,7 @@ public class AddCapteurActivity extends AppCompatActivity {
                                 Intent i = new Intent(AddCapteurActivity.this, InfoActivity.class);
                                 i.putExtra("token", token);
                                 i.putExtra("idRoom", idRoom);
+                                i.putExtra("nameRoom", nameRoom);
 
                                 startActivity(i);
                                 break;

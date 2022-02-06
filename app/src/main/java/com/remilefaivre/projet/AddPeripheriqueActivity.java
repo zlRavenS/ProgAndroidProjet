@@ -39,6 +39,7 @@ public class AddPeripheriqueActivity extends AppCompatActivity {
         Intent tokenI = getIntent();
         String token = tokenI.getStringExtra("token");
         String idRoom = tokenI.getStringExtra("idRoom");
+        String nameRoom = tokenI.getStringExtra("nameRoom");
 
         // Récupération du nom du nouveau périphérique
         EditText newNameField = (EditText) findViewById(R.id.new_name_room);
@@ -52,7 +53,6 @@ public class AddPeripheriqueActivity extends AppCompatActivity {
         AndroidNetworking.post("https://myhouse.lesmoulinsdudev.com/device-create")
                 .addHeaders("Authorization", "Bearer "+token)
                 .addBodyParameter("name", newName)
-                .addBodyParameter("idPicture","2")
                 .addBodyParameter("idDeviceType",""+newType.getId())
                 .addBodyParameter("idRoom",""+idRoom)
                 .build()
@@ -65,6 +65,7 @@ public class AddPeripheriqueActivity extends AppCompatActivity {
                                 Intent i = new Intent(AddPeripheriqueActivity.this, InfoActivity.class);
                                 i.putExtra("token", token);
                                 i.putExtra("idRoom", idRoom);
+                                i.putExtra("nameRoom", nameRoom);
 
                                 startActivity(i);
                                 break;
