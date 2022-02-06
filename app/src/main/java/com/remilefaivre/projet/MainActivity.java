@@ -24,18 +24,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickRegister(View view) {
+        // Affiche l'activité RegisterActivity
         Intent i = new Intent(MainActivity.this, RegisterActivity.class);
         startActivity(i);
     }
 
     public void onClickLogging(View view) {
 
+        // Récupère le champ texte de l'email dans le layout
         final EditText emailField = (EditText) findViewById(R.id.txt_mail);
         String email = emailField.getText().toString();
 
+        // Récupère le champ texte du mot de passe dans le layout
         final EditText passwordField = (EditText) findViewById(R.id.txt_password);
         String pwd = passwordField.getText().toString();
 
+        // Connexion au site afin de se connecter
         AndroidNetworking.post("https://myhouse.lesmoulinsdudev.com/auth")
             .addBodyParameter("login", email)
             .addBodyParameter("password", pwd)
@@ -44,8 +48,10 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(JSONObject response) {
                     try {
+                        // Récupération du token
                         String token = response.getString("token");
 
+                        // Affichage de l'activité RoomActivity listant les pièces liées à notre token
                         Intent i = new Intent(MainActivity.this, RoomsActivity.class);
                         i.putExtra("token", token);
                         startActivity(i);
@@ -57,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void onError(ANError anError) {
+                    // Si la connexion n'est pas effectuée, renvoie un Toast
                     Toast toast = Toast.makeText(MainActivity.this, "Erreur", Toast.LENGTH_SHORT);
                     toast.show();
                     anError.getErrorCode();

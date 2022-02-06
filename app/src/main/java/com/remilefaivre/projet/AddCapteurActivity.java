@@ -36,20 +36,23 @@ public class AddCapteurActivity extends AppCompatActivity {
 
     public void onClickValider(View view) {
 
+        // Récupération du token et de l'ID de la Room
         Intent intent = getIntent();
         String token = intent.getStringExtra("token");
         String idRoom = intent.getStringExtra("idRoom");
 
+        // Récupération du nom du nouveau capteur
         EditText newNameField = (EditText) findViewById(R.id.new_name_text);
         String newName = String.valueOf(newNameField.getText());
 
+        // Récupération du type du nouveau capteur
         Spinner newTypeField = (Spinner) findViewById(R.id.new_type_spinner);
         SensorType newType = (SensorType) newTypeField.getSelectedItem();
 
+        // Connexion au site pour créer un capteur
         AndroidNetworking.post("https://myhouse.lesmoulinsdudev.com/sensor-create")
                 .addHeaders("Authorization", "Bearer "+token)
                 .addBodyParameter("name", newName)
-                .addBodyParameter("idPicture","2")
                 .addBodyParameter("idSensorType",""+newType.getId())
                 .addBodyParameter("idRoom",""+idRoom)
                 .build()
@@ -58,6 +61,7 @@ public class AddCapteurActivity extends AppCompatActivity {
                     public void onResponse(Response response) {
                         switch (response.code()) {
                             case 200:
+                                // Retour sur l'activité précédente en récupérant le nouveau capteur
                                 Intent i = new Intent(AddCapteurActivity.this, InfoActivity.class);
                                 i.putExtra("token", token);
                                 i.putExtra("idRoom", idRoom);
@@ -65,6 +69,7 @@ public class AddCapteurActivity extends AppCompatActivity {
                                 startActivity(i);
                                 break;
                             default:
+                                // Si erreur, affichage d'un Toast
                                 Toast toastError = Toast.makeText(AddCapteurActivity.this, "Erreur " + response.code(), Toast.LENGTH_SHORT);
                                 toastError.show();
                         }
@@ -82,16 +87,19 @@ public class AddCapteurActivity extends AppCompatActivity {
     public void loadSensorType() {
         Context that = this;
 
+        // Connexion au site pour récupérer nos types de capteurs
         AndroidNetworking.get("https://myhouse.lesmoulinsdudev.com/sensor-types")
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
+                            // Listage de tous les types de capteurs
                             JSONArray sensorTypes  = response.getJSONArray("sensor-types");
 
                             ArrayList<SensorType> typeList = new ArrayList<>();
-                            // Pour chaque pizza
+
+                            // Pour chaque type de capteurs
                             for(int iType = 0; iType < sensorTypes.length(); ++iType)
                             {
                                 final JSONObject type = sensorTypes.getJSONObject(iType);
@@ -102,6 +110,7 @@ public class AddCapteurActivity extends AppCompatActivity {
                                 ));
                             }
 
+                            // Affichage des types de capteurs dans un Spinner grâce à un Adapter
                             ArrayAdapter<SensorType> adapter = new ArrayAdapter<>(
                                     that,
                                     android.R.layout.simple_spinner_dropdown_item,

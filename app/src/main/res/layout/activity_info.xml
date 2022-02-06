@@ -70,25 +70,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
+        android:layout_marginEnd="20dp"
         android:text="Périphériques"
         android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button_addDevice"
         app:layout_constraintTop_toBottomOf="@+id/roomName" />
 
     <Button
         android:id="@+id/button_addDevice"
         android:layout_width="48dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
         android:layout_marginTop="25dp"
         android:onClick="onClickAjouterPeripherique"
         android:text="+"
         app:backgroundTint="#0099FF"
-        app:layout_constraintStart_toEndOf="@+id/button_addSensor"
+        app:layout_constraintEnd_toStartOf="@+id/textView_Peripheriques"
         app:layout_constraintTop_toBottomOf="@+id/roomName" />
 
     <Button

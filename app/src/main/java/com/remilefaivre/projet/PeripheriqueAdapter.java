@@ -73,12 +73,14 @@ public class PeripheriqueAdapter extends BaseAdapter implements ListAdapter {
 
         View view = layoutInflater.inflate(obj, null, false);
 
+        // Récupération des différents éléments du layout
         TextView nameField = view.findViewById(R.id.texte_nom_peripherique);
         ImageView imgDevice = view.findViewById(R.id.img_peripherique);
         Button deleteDevice = view.findViewById(R.id.button_supprimer_peripherique);
         Switch stateDevice = view.findViewById(R.id.device_state);
 
 
+        // Récupération des différents éléments du périphérique donné en paramètre
         try {
             name = devices.getJSONObject(position).getString("name");
             urlPicture =  devices.getJSONObject(position).getString("picture");
@@ -89,9 +91,11 @@ public class PeripheriqueAdapter extends BaseAdapter implements ListAdapter {
             e.printStackTrace();
         }
 
+        // Changement des éléments de notre layout
         nameField.setText(name);
         deleteDevice.setTag(id);
 
+        // Récupération de l'état de notre périphérque à l'aide du site et de l'ID du capteur
         if(status==1){
             stateDevice.setChecked(true);
         }else{
@@ -99,11 +103,14 @@ public class PeripheriqueAdapter extends BaseAdapter implements ListAdapter {
         }
         stateDevice.setTag(id);
 
+        // Téléchargement de l'image correspondant au type du périphérique
         new PeripheriqueAdapter.DownloadImageTask(imgDevice)
                 .execute("https://myhouse.lesmoulinsdudev.com/"+ urlPicture);
         return view;
     }
 
+
+    // Affichage et téléchargement d'une image
     class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;
 

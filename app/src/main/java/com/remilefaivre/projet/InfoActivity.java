@@ -36,12 +36,14 @@ public class InfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
 
+        // Récupération des infos de la RoomActivity
         Intent intent = getIntent();
 
         String token = intent.getStringExtra("token");
         String idRoom = intent.getStringExtra("idRoom");
         String titreRoom = intent.getStringExtra("nameRoom");
 
+        // Changement du nom de la pièce dans le layout
         TextView nameRoom = findViewById(R.id.roomName);
         nameRoom.setText(titreRoom);
 
@@ -54,10 +56,12 @@ public class InfoActivity extends AppCompatActivity {
 
     public void onClickAjouterCapteur(View view) {
 
+        // Récupération du token et de l'ID de la pièce
         Intent intent = getIntent();
         String token = intent.getStringExtra("token");
         String idRoom = intent.getStringExtra("idRoom");
 
+        // Lancement de l'activité AddCapteurActivity et donne en extra le token et l'ID de la pièce
         Intent i = new Intent(InfoActivity.this, AddCapteurActivity.class);
         i.putExtra("token", token);
         i.putExtra("idRoom", ""+idRoom);
@@ -66,49 +70,54 @@ public class InfoActivity extends AppCompatActivity {
 
     public void onClickSupprimerCapteur(View view) {
 
+        // Récupération du token et de l'ID de la pièce
         Intent intent = getIntent();
         String token = intent.getStringExtra("token");
         String idRoom = intent.getStringExtra("idRoom");
 
+        // Création de l'ID du capteur afin que le capteur sélectionné soit supprimé
         int idSensor = (int) view.getTag();
 
+        // Connexion au site afin de supprimer notre capteur à partir de son ID récupéré précédemment
         AndroidNetworking.post("https://myhouse.lesmoulinsdudev.com/sensor-delete")
-                .addHeaders("Authorization", "Bearer "+token)
-                .addBodyParameter("idSensor",""+idSensor)
-                .build()
-                .getAsOkHttpResponse(new OkHttpResponseListener() {
-                    @Override
-                    public void onResponse(Response response) {
-                        switch (response.code()) {
-                            case 200:
-                                Intent i = new Intent(InfoActivity.this, InfoActivity.class);
-                                i.putExtra("token", token);
-                                i.putExtra("idRoom", idRoom);
-                                startActivity(i);
-                                break;
-                            default:
-                                Toast toastError = Toast.makeText(InfoActivity.this, "Erreur " + response.code(), Toast.LENGTH_SHORT);
-                                toastError.show();
-                        }
-
+            .addHeaders("Authorization", "Bearer "+token)
+            .addBodyParameter("idSensor",""+idSensor)
+            .build()
+            .getAsOkHttpResponse(new OkHttpResponseListener() {
+                @Override
+                public void onResponse(Response response) {
+                    switch (response.code()) {
+                        case 200:
+                            // Actualisation de notre Activité pour afficher la suppression de notre capteur
+                            Intent i = new Intent(InfoActivity.this, InfoActivity.class);
+                            i.putExtra("token", token);
+                            i.putExtra("idRoom", idRoom);
+                            startActivity(i);
+                            break;
+                        default:
+                            // S'il n'a pas été supprimé, affiche un Toast
+                            Toast toastError = Toast.makeText(InfoActivity.this, "Erreur " + response.code(), Toast.LENGTH_SHORT);
+                            toastError.show();
                     }
 
-                    @Override
-                    public void onError(ANError anError) {
-                        Toast toastError = Toast.makeText(InfoActivity.this, "Erreur", Toast.LENGTH_SHORT);
-                        toastError.show();
-                    }
-                });
+                }
 
-
+                @Override
+                public void onError(ANError anError) {
+                    Toast toastError = Toast.makeText(InfoActivity.this, "Erreur", Toast.LENGTH_SHORT);
+                    toastError.show();
+                }
+            });
     }
 
     public void loadCapteurs(String token, String idRoom) {
 
         Context that = this;
 
+        // Récupère le ListView du layout où seront affichés les capteurs
         ListView listSensors = findViewById(R.id.liste_capteurs);
 
+        // Connexion au site afin de récupérer les capteurs associés à l'ID de notre pièce sélectionnée précédemment
         AndroidNetworking.get("https://myhouse.lesmoulinsdudev.com/sensors?idRoom="+idRoom)
             .addHeaders("Authorization","Bearer " + token)
             .build()
@@ -118,6 +127,7 @@ public class InfoActivity extends AppCompatActivity {
                     try {
                         JSONArray sensors = response.getJSONArray("sensors");
 
+                        // Affiche les capteurs dans le ListView à parti du modèle capteur_item.xml
                         CapteurAdapter capteurAdapter = new CapteurAdapter(that,R.layout.capteur_item, sensors, token);
                         listSensors.setAdapter(capteurAdapter);
 
@@ -128,6 +138,7 @@ public class InfoActivity extends AppCompatActivity {
 
                 @Override
                 public void onError(ANError anError) {
+                    // Si erreur, renvoie un Toast
                     Toast toastError = Toast.makeText(that,anError.getErrorBody(),Toast.LENGTH_SHORT);
                     toastError.show();
                     anError.getErrorCode();
@@ -141,8 +152,10 @@ public class InfoActivity extends AppCompatActivity {
 
         Context that = this;
 
+        // Récupère le ListView du layout où seront affichés les périphériques
         ListView listDevices = findViewById(R.id.liste_peripheriques);
 
+        // Connexion au site afin de récupérer les périphériques associés à l'ID de notre pièce sélectionnée précédemment
         AndroidNetworking.get("https://myhouse.lesmoulinsdudev.com/devices?idRoom=" + idRoom)
             .addHeaders("Authorization", "Bearer " + token)
             .build()
@@ -152,6 +165,7 @@ public class InfoActivity extends AppCompatActivity {
                     try {
                         JSONArray peripheriques = response.getJSONArray("devices");
 
+                        // Affiche les périphériques dans le ListView à parti du modèle peripherique_item.xml
                         PeripheriqueAdapter peripheriqueAdapter = new PeripheriqueAdapter(that, R.layout.peripherique_item, peripheriques);
                         listDevices.setAdapter(peripheriqueAdapter);
 
@@ -162,6 +176,7 @@ public class InfoActivity extends AppCompatActivity {
 
                 @Override
                 public void onError(ANError anError) {
+                    // Si erreur, renvoie un Toast
                     Toast toastError = Toast.makeText(that, anError.getErrorBody(), Toast.LENGTH_SHORT);
                     toastError.show();
                     anError.getErrorCode();
@@ -171,10 +186,12 @@ public class InfoActivity extends AppCompatActivity {
 
     public void onClickAjouterPeripherique(View view) {
 
+        // Récupération du token et de l'ID de la pièce
         Intent intent = getIntent();
         String token = intent.getStringExtra("token");
         String idRoom = intent.getStringExtra("idRoom");
 
+        // Lancement de l'activité AddPeripheriqueActivity et donne en extra le token et l'ID de la pièce
         Intent i = new Intent(InfoActivity.this, AddPeripheriqueActivity.class);
         i.putExtra("token", token);
         i.putExtra("idRoom", ""+idRoom);
@@ -183,12 +200,15 @@ public class InfoActivity extends AppCompatActivity {
 
     public void onClickSupprimerPeripherique(View view) {
 
+        // Récupération du token et de l'ID de la pièce
         Intent intent = getIntent();
         String token = intent.getStringExtra("token");
         String idRoom = intent.getStringExtra("idRoom");
 
+        // Création de l'ID du périphérique afin que le périphérique sélectionné soit supprimé
         int idDevice = (int) view.getTag();
 
+        // Connexion au site afin de supprimer notre périphérique à partir de son ID récupéré précédemment
         AndroidNetworking.post("https://myhouse.lesmoulinsdudev.com/device-delete")
             .addHeaders("Authorization", "Bearer "+token)
             .addBodyParameter("idDevice",""+idDevice)
@@ -198,12 +218,14 @@ public class InfoActivity extends AppCompatActivity {
                 public void onResponse(Response response) {
                     switch (response.code()) {
                         case 200:
+                            // Actualisation de notre Activité pour afficher la suppression de notre périphérique
                             Intent i = new Intent(InfoActivity.this, InfoActivity.class);
                             i.putExtra("token", token);
                             i.putExtra("idRoom", idRoom);
                             startActivity(i);
                             break;
                         default:
+                            // S'il n'a pas été supprimé, affiche un Toast
                             Toast toastError = Toast.makeText(InfoActivity.this, "Erreur " + response.code(), Toast.LENGTH_SHORT);
                             toastError.show();
                     }
@@ -222,11 +244,15 @@ public class InfoActivity extends AppCompatActivity {
 
     public void onClickEtat(View view){
 
+        // Récupération du token et de l'ID de la pièce
         Intent intent = getIntent();
         String token = intent.getStringExtra("token");
         String idRoom = intent.getStringExtra("idRoom");
 
+        // Création de l'ID du périphérique afin que l'état du périphérique sélectionné soit modifié
         int idDevice = (int) view.getTag();
+
+        // Récupération de l'état du Switch
         boolean on = ((Switch) view).isChecked();
         int etat;
         if(on) {
@@ -235,6 +261,7 @@ public class InfoActivity extends AppCompatActivity {
             etat = 0;
         }
 
+        // Connexion au site afin de modifier l'état de notre périphérique à partir de son ID récupéré précédemment
         AndroidNetworking.post("https://myhouse.lesmoulinsdudev.com/device-status")
             .addHeaders("Authorization", "Bearer "+token)
             .addBodyParameter("idDevice",""+idDevice)
@@ -245,12 +272,14 @@ public class InfoActivity extends AppCompatActivity {
                 public void onResponse(Response response) {
                     switch (response.code()) {
                         case 200:
+                            // Actualisation de notre Activité pour afficher l'état de notre périphérique
                             Intent i = new Intent(InfoActivity.this, InfoActivity.class);
                             i.putExtra("token", token);
                             i.putExtra("idRoom", idRoom);
                             startActivity(i);
                             break;
                         default:
+                            // S'il n'a pas été modifié, affiche un Toast
                             Toast toastError = Toast.makeText(InfoActivity.this, "Erreur " + response.code(), Toast.LENGTH_SHORT);
                             toastError.show();
                     }
@@ -265,10 +294,13 @@ public class InfoActivity extends AppCompatActivity {
     }
 
 
+
     public void onClickReturnRooms(View view) {
+        // Récupération du token
         Intent tokenI = getIntent();
         String token = tokenI.getStringExtra("token");
 
+        // Retour sur l'activité précédente en récupérant les pièces déjà crées pour notre compte
         Intent i = new Intent(InfoActivity.this, RoomsActivity.class);
         i.putExtra("token", token);
         startActivity(i);

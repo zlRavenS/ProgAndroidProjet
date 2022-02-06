@@ -78,11 +78,13 @@ public class CapteurAdapter extends BaseAdapter implements ListAdapter {
 
         View view = layoutInflater.inflate(obj, null, false);
 
+        // Récupération des différents éléments du layout
         TextView nameField = view.findViewById(R.id.texte_capteur);
         ImageView imgSensor = view.findViewById(R.id.image_capteur);
         Button deleteSensor = view.findViewById(R.id.button_deleteSensor);
 
 
+        // Récupération des différents éléments du capteur donné en paramètre
         try {
             name = capteurs.getJSONObject(position).getString("name");
             urlPicture =  capteurs.getJSONObject(position).getString("picture");
@@ -92,11 +94,12 @@ public class CapteurAdapter extends BaseAdapter implements ListAdapter {
             e.printStackTrace();
         }
 
+        // Changement des éléments de notre layout
         imgSensor.setImageURI(Uri.parse(urlPicture));
         nameField.setText(name);
         deleteSensor.setTag(id);
 
-
+        // Récupération de la valeur de notre capteurs à l'aide du site et de l'ID du capteur
         TextView valueField = view.findViewById(R.id.texte_value);
         AndroidNetworking.get("https://myhouse.lesmoulinsdudev.com/sensor-value?idSensor="+id)
             .addHeaders("Authorization","Bearer " + token)
@@ -107,6 +110,7 @@ public class CapteurAdapter extends BaseAdapter implements ListAdapter {
                     Double value;
                     String unit;
                     try {
+                        // Récupération de la valeur et de l'unité de mesure
                         value = response.getDouble("value");
                         unit =  response.getString("unit");
 
@@ -123,12 +127,13 @@ public class CapteurAdapter extends BaseAdapter implements ListAdapter {
                 }
             });
 
+        // Téléchargement de l'image correspondant au type du capteur
         new CapteurAdapter.DownloadImageTask(imgSensor)
             .execute("https://myhouse.lesmoulinsdudev.com/"+ urlPicture);
         return view;
     }
 
-    // show The Image in a ImageView
+    // Affichage et téléchargement d'une image
     class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;
 

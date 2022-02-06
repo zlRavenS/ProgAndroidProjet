@@ -1,5 +1,6 @@
 package com.remilefaivre.projet;
 
+// Classe d'un périphérique, inutilisée ici
 public class Device {
     private String name;
     private int idPicture;
