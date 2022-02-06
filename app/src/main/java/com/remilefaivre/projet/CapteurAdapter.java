@@ -37,7 +37,6 @@ public class CapteurAdapter extends BaseAdapter implements ListAdapter {
 
     //Objet du layout
     int obj;
-    int resource;
     JSONArray capteurs;
 
     String urlPicture;

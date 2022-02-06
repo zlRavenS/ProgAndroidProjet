@@ -43,7 +43,6 @@ public class PeripheriqueAdapter extends BaseAdapter implements ListAdapter {
 
     //Objet du layout
     int obj;
-    int resource;
     JSONArray peripheriques;
 
     String urlPicture;
@@ -87,13 +86,14 @@ public class PeripheriqueAdapter extends BaseAdapter implements ListAdapter {
 
         View view = layoutInflater.inflate(obj, null, false);
 
+        // Récupération des différents éléments du layout
         TextView nameField = view.findViewById(R.id.texte_nom_peripherique);
         //TextView typeField = view.findViewById(R.id.texte_type_peripherique);
         ImageView imgDevice = view.findViewById(R.id.img_peripherique);
         Button deleteDevice = view.findViewById(R.id.button_supprimer_peripherique);
         Switch stateDevice = view.findViewById(R.id.device_state);
 
-
+        // Récupération des différents éléments du périphérique donné en paramètre
         try {
             name = peripheriques.getJSONObject(position).getString("name");
             urlPicture =  peripheriques.getJSONObject(position).getString("picture");
@@ -104,10 +104,12 @@ public class PeripheriqueAdapter extends BaseAdapter implements ListAdapter {
             e.printStackTrace();
         }
 
-        //imgDevice.setImageURI(Uri.parse(urlPicture));
+        // Changement des éléments de notre layout
         nameField.setText(name);
         //typeField.setText(type);
         deleteDevice.setTag(id);
+
+        // Récupération de l'état de notre périphérque à l'aide du site et de l'ID du capteur
         if(status==1){
             stateDevice.setChecked(true);
         }else{
@@ -115,11 +117,13 @@ public class PeripheriqueAdapter extends BaseAdapter implements ListAdapter {
         }
         stateDevice.setTag(id);
 
+        // Téléchargement de l'image correspondant au type du périphérique
         new PeripheriqueAdapter.DownloadImageTask(imgDevice)
                 .execute("https://myhouse.lesmoulinsdudev.com/"+urlPicture);
         return view;
     }
 
+    // Affichage et téléchargement d'une image
     class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;
 

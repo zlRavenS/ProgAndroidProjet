@@ -25,6 +25,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void register(View view) {
+        //Réupération des informations du formulaire
         final EditText champNom = (EditText) findViewById(R.id.txt_name);
         String name = champNom.getText().toString();
         final EditText champEmail = (EditText) findViewById(R.id.txt_mail);
@@ -32,6 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
         final EditText champMdp = (EditText) findViewById(R.id.txt_password);
         String mdp = champMdp.getText().toString();
 
+        //Connexion au site pour l'enregistrement d'un compte
         AndroidNetworking.post("https://myhouse.lesmoulinsdudev.com/register")
                 .addBodyParameter("name", name)
                 .addBodyParameter("login", email)
@@ -42,6 +44,7 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onResponse(Response response) {
                         switch (response.code()) {
                             case 200:
+                                //si le compte se créer, alors on retourne à la page de connexion
                                 Intent i = new Intent(RegisterActivity.this, MainActivity.class);
                                 startActivity(i);
                                 break;
@@ -51,6 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                     @Override
                     public void onError(ANError anError) {
+                        //si erreur lors de la connexion au site alors on affiche un message d'erreur
                         Toast toast = Toast.makeText(RegisterActivity.this, "Erreur", Toast.LENGTH_SHORT);
                         toast.show();
                     }

@@ -35,7 +35,6 @@ public class RoomAdapter extends BaseAdapter implements ListAdapter {
 
     //Objet du layout
     int obj;
-    int resource;
 
     JSONArray room;
 
@@ -75,11 +74,13 @@ public class RoomAdapter extends BaseAdapter implements ListAdapter {
 
         View view = layoutInflater.inflate(obj, null, false);
 
+        // Récupération des différents éléments du layout
         TextView textRoom = view.findViewById(R.id.texte_room);
         ImageView imgRoom = view.findViewById(R.id.image_room);
         Button deleteRoom = view.findViewById(R.id.delete_room);
         ConstraintLayout myView = view.findViewById(R.id.my_view);
 
+        // Récupération des différents éléments de la pièce donnée en paramètre
         try {
             name = room.getJSONObject(position).getString("name");
             urlPicture =  room.getJSONObject(position).getString("picture");
@@ -88,18 +89,18 @@ public class RoomAdapter extends BaseAdapter implements ListAdapter {
             e.printStackTrace();
         }
 
-        //imgRoom.setImageURI(Uri.parse());
-
+        // Changement des éléments de notre layout
         textRoom.setText(name);
         deleteRoom.setTag(id);
         myView.setTag(id);
 
+        // Téléchargement de l'image correspondant au type du périphérique
         new DownloadImageTask(imgRoom)
                 .execute("https://myhouse.lesmoulinsdudev.com/"+urlPicture);
         return view;
     }
 
-    // show The Image in a ImageView
+    // Affichage et téléchargement d'une image
     class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;
 

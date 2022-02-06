@@ -1,5 +1,6 @@
 package com.remilefaivre.projet;
 
+// Classe d'une pièce (inutilisée ici)
 public class Room {
     private int id;
     private int idPicture;

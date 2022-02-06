@@ -1,5 +1,6 @@
 package com.remilefaivre.projet;
 
+// Classe d'une image
 public class Picture {
     private int idPicture;
     private String url;
