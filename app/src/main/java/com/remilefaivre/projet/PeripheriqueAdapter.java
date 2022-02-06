@@ -88,7 +88,7 @@ public class PeripheriqueAdapter extends BaseAdapter implements ListAdapter {
         View view = layoutInflater.inflate(obj, null, false);
 
         TextView nameField = view.findViewById(R.id.texte_nom_peripherique);
-        TextView typeField = view.findViewById(R.id.texte_type_peripherique);
+        //TextView typeField = view.findViewById(R.id.texte_type_peripherique);
         ImageView imgDevice = view.findViewById(R.id.img_peripherique);
         Button deleteDevice = view.findViewById(R.id.button_supprimer_peripherique);
         Switch stateDevice = view.findViewById(R.id.device_state);
@@ -106,7 +106,7 @@ public class PeripheriqueAdapter extends BaseAdapter implements ListAdapter {
 
         //imgDevice.setImageURI(Uri.parse(urlPicture));
         nameField.setText(name);
-        typeField.setText(type);
+        //typeField.setText(type);
         deleteDevice.setTag(id);
         if(status==1){
             stateDevice.setChecked(true);

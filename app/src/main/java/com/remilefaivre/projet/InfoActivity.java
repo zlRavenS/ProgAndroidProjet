@@ -224,9 +224,9 @@ public class InfoActivity extends AppCompatActivity {
         boolean on = ((Switch) view).isChecked();
         int etat;
         if(on) {
-            etat = 0;
-        } else {
             etat = 1;
+        } else {
+            etat = 0;
         }
 
         AndroidNetworking.post("https://myhouse.lesmoulinsdudev.com/device-status")

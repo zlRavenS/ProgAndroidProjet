@@ -82,7 +82,7 @@ public class CapteurAdapter extends BaseAdapter implements ListAdapter {
         View view = layoutInflater.inflate(obj, null, false);
 
         TextView nameField = view.findViewById(R.id.texte_capteur);
-        TextView typeField = view.findViewById(R.id.type_capteur);
+        //TextView typeField = view.findViewById(R.id.type_capteur);
         ImageView imgSensor = view.findViewById(R.id.image_capteur);
         Button deleteSensor = view.findViewById(R.id.button_deleteSensor);
 
@@ -98,7 +98,7 @@ public class CapteurAdapter extends BaseAdapter implements ListAdapter {
 
         imgSensor.setImageURI(Uri.parse(urlPicture));
         nameField.setText(name);
-        typeField.setText(type);
+        //typeField.setText(type);
         deleteSensor.setTag(id);
 
 
