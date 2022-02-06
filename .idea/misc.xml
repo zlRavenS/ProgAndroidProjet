@@ -4,9 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/ESIREM/4A/ProgAndroidProjet/app/src/main/res/layout/activity_capteurs.xml" value="0.2957427536231884" />
+        <entry key="..\:/ESIREM/4A/ProgAndroidProjet/app/src/main/res/layout/activity_info.xml" value="0.17831813576494426" />
         <entry key="..\:/ESIREM/4A/ProgAndroidProjet/app/src/main/res/layout/activity_main.xml" value="0.2957427536231884" />
         <entry key="..\:/ESIREM/4A/ProgAndroidProjet/app/src/main/res/layout/activity_register.xml" value="0.2957427536231884" />
         <entry key="..\:/ESIREM/4A/ProgAndroidProjet/app/src/main/res/layout/activity_rooms.xml" value="0.2957427536231884" />
+        <entry key="..\:/ESIREM/4A/ProgAndroidProjet/app/src/main/res/layout/capteur_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/ESIREM/4A/ProgAndroidProjet/app/src/main/res/layout/peripherique_item.xml" value="0.36666666666666664" />
         <entry key="..\:/ESIREM/4A/ProgAndroidProjet/app/src/main/res/layout/room_item.xml" value="0.36666666666666664" />
         <entry key="..\:/Program Files/Android/ProgAndroidProjet/app/src/main/res/layout/activity_add_capteur.xml" value="0.25416666666666665" />
         <entry key="..\:/Program Files/Android/ProgAndroidProjet/app/src/main/res/layout/activity_add_peripherique.xml" value="0.25416666666666665" />

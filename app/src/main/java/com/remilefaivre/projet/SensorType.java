@@ -1,6 +1,6 @@
 package com.remilefaivre.projet;
 
-//Classe de Type de Capteur
+// Classe d'un type de capteur
 public class SensorType {
     private int id;
     private String name;
